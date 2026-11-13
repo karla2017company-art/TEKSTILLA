@@ -6,12 +6,12 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 
-// صفحة المتجر الرئيسية
+// صفحة المتجر الرئيسية (تأكد أن اسم ملف الـ HTML لديك يطابق هذا الاسم تماماً)
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'teksti_lla_kad_n_giyim.html'));
 });
 
-// 📌 مسار جلب ومزامنة المنتجات من Trendyol تلقائياً
+// 📌 مسار جلب ومزامنة المنتجات من Trendyol مع كشف الأخطاء المفصلة
 app.get('/api/sync-trendyol', async (req, res) => {
     try {
         const SUPPLIER_ID = '741732';
@@ -32,8 +32,13 @@ app.get('/api/sync-trendyol', async (req, res) => {
 
         const data = await response.json();
 
+        // إذا رفض ترينديول الطلب، سنطبع السبب بالتفصيل لنعرف المشكلة فوراً
         if (!response.ok) {
-            throw new Error(data.message || 'فشل الاتصال بمنصة Trendyol');
+            return res.status(response.status).json({
+                success: false,
+                message: 'رفضت منصة Trendyol الطلب، والسبب بالتفصيل:',
+                trendyol_error: data
+            });
         }
 
         res.status(200).json({
@@ -44,7 +49,6 @@ app.get('/api/sync-trendyol', async (req, res) => {
         });
 
     } catch (error) {
-        console.error('Trendyol Sync Error:', error.message);
         res.status(500).json({ success: false, error: error.message });
     }
 });
