@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "start": "node server.js",
-    "dev": "nodemon /server.js",
-    "init-db": "node /server.js --init-db"
+    "dev": "nodemon/server.js",
+    "init-db": "node/server.js --init-db"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
