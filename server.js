@@ -22,7 +22,7 @@ app.get('/api/sync-trendyol', async (req, res) => {
         const credentials = Buffer.from(`${API_KEY}:${API_SECRET}`).toString('base64');
 
         // طلب جلب المنتجات من واجهة ترينديول للموردين
-        const response =- await fetch(`https://api.trendyol.com/sapigw/suppliers/${SUPPLIER_ID}/products`, {
+        const response = await fetch(`https://api.trendyol.com/sapigw/suppliers/${SUPPLIER_ID}/products`, {
             method: 'GET',
             headers: {
                 'Authorization': `Basic ${credentials}`,
