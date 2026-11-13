@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'teksti_lla_kad_n_giyim.html'));
 });
 
-// 📌 مسار سحب المنتجات باستخدام الـ Token الرسمي المباشر لمتجر TEKSTİLLA
+// 📌 مسار سحب المنتجات باستخدام التوكن الرسمي لمتجر TEKSTİLLA
 app.get('/api/sync-trendyol', async (req, res) => {
     try {
         const SUPPLIER_ID = '741732';
@@ -20,7 +20,7 @@ app.get('/api/sync-trendyol', async (req, res) => {
             method: 'GET',
             headers: {
                 'Authorization': `Basic ${AUTH_TOKEN}`,
-                'User-Agent': `${SUPRLIER_ID} - SelfIntegration`,
+                'User-Agent': `${SUPPLIER_ID} - SelfIntegration`,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
