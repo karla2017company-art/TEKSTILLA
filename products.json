@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "فستان نسائي سهرة أنيق - TEKSTİLLA",
+    "price": 450,
+    "currency": "TL",
+    "image": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500",
+    "category": "Elbise"
+  },
+  {
+    "id": 2,
+    "title": "طقم قطعتين كاجوال عصري",
+    "price": 380,
+    "currency": "TL",
+    "image": "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500",
+    "category": "Takım"
+  },
+  {
+    "id": 3,
+    "title": "جاكيت شتوي نسائي فاخر",
+    "price": 650,
+    "currency": "TL",
+    "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500",
+    "category": "Mont"
+  }
+]
