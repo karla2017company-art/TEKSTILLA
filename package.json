@@ -2,11 +2,11 @@
   "name": "ilya-fashion-ecommerce",
   "version": "1.0.0",
   "description": "ILYA | إيليا - Bilingual (AR/TR) Luxury Women's Fashion E-Commerce Platform",
-  "main": "backend/server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node backend/server.js",
-    "dev": "nodemon backend/server.js",
-    "init-db": "node backend/server.js --init-db"
+    "start": "start": "node server.js",
+    "dev": "nodemon /server.js",
+    "init-db": "node /server.js --init-db"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
