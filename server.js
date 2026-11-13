@@ -1,13 +1,16 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
+// السماح بقراءة الملفات الثابتة
+app.use(express.static(path.join(__dirname)));
 
+// توجيه الصفحة الرئيسية لملف المتجر الأساسي
 app.get('/', (req, res) => {
-    res.send('TEKSTİLLA E-Commerce Server is running successfully!');
+    res.sendFile(path.join(__dirname, 'tekstilla_kad_n_giyim.html'));
 });
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`TEKSTİLLA Server is running on port ${PORT}`);
 });
