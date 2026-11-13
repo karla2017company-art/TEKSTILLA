@@ -8,7 +8,7 @@ app.use(express.static(path.join(__dirname)));
 
 // صفحة المتجر الرئيسية
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'tekstilla_kad_n_giyim.html'));
+    res.sendFile(path.join(__dirname, 'teksti_lla_kad_n_giyim.html'));
 });
 
 // 📌 مسار جلب ومزامنة المنتجات من Trendyol تلقائياً
