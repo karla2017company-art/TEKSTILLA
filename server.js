@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'teksti_lla_kad_n_giyim.html'));
 });
 
-// 📌 مسار سحب المنتجات من ترينديول مع دعم معاملات الاستعلام
+// 📌 مسار سحب المنتجات من ترينديول مع المعاملات الصحيحة
 app.get('/api/sync-trendyol', async (req, res) => {
     try {
         const SUPPLIER_ID = '741732';
@@ -19,8 +19,8 @@ app.get('/api/sync-trendyol', async (req, res) => {
 
         const credentials = Buffer.from(`${API_KEY}:${API_SECRET}`).toString('base64');
 
-        // طلب جلب المنتجات من ترينديول (مرفق معها معاملات لضمان جلب المنتجات الموافق عليها)
-        const response = await fetch(`https://api.trendyol.com/sapigw/suppliers/${SUPPLIER_ID}/products?approved=true`, {
+        // طلب جلب المنتجات مع تمرير معامل approved=true والصفحة الأولى
+        const response = await fetch(`https://api.trendyol.com/sapigw/suppliers/${SUPPLIER_ID}/products?approved=true&page=0&size=50`, {
             method: 'GET',
             headers: {
                 'Authorization': `Basic ${credentials}`,
@@ -39,7 +39,7 @@ app.get('/api/sync-trendyol', async (req, res) => {
             });
         }
 
-        // استخراج المنتجات بناءً على هيكلية استجابة ترينديول
+        // استخراج قائمة المنتجات من استجابة ترينديول
         const productsList = data.content || data.products || [];
 
         res.status(200).json({
