@@ -6,11 +6,12 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 
+// صفحة المتجر الرئيسية مع الاسم الدقيق للملف
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'teksti_lla_kad_n_giyim.html'));
 });
 
-// 📌 مسار سحب المنتجات من ترينديول مع المعاملات الصحيحة
+// 📌 مسار فحص استجابة ترينديول وتشخيص البيانات
 app.get('/api/sync-trendyol', async (req, res) => {
     try {
         const SUPPLIER_ID = '741732';
@@ -19,34 +20,21 @@ app.get('/api/sync-trendyol', async (req, res) => {
 
         const credentials = Buffer.from(`${API_KEY}:${API_SECRET}`).toString('base64');
 
-        // طلب جلب المنتجات مع تمرير معامل approved=true والصفحة الأولى
-        const response = await fetch(`https://api.trendyol.com/sapigw/suppliers/${SUPPLIER_ID}/products?approved=true&page=0&size=50`, {
+        const response = await fetch(`https://api.trendyol.com/sapigw/suppliers/${SUPPLIER_ID}/products?approved=true`, {
             method: 'GET',
             headers: {
                 'Authorization': `Basic ${credentials}`,
                 'User-Agent': `${SUPPLIER_ID} - SelfIntegration`,
-                'Content-Type': 'application/json'
+                'Accept': 'application/json'
             }
         });
 
-        const data = await response.json();
-
-        if (!response.ok) {
-            return res.status(response.status).json({
-                success: false,
-                message: 'فشل جلب المنتجات من ترينديول',
-                error: data
-            });
-        }
-
-        // استخراج قائمة المنتجات من استجابة ترينديول
-        const productsList = data.content || data.products || [];
+        const responseText = await response.text();
 
         res.status(200).json({
-            success: true,
-            message: 'تم سحب المنتجات من ترينديول بنجاح!',
-            productsCount: productsList.length,
-            products: productsList
+            status: response.status,
+            ok: response.ok,
+            raw_response: responseText.substring(0, 500)
         });
 
     } catch (error) {
