@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'teksti_lla_kad_n_giyim.html'));
 });
 
-// 📌 مسار سحب المنتجات مع ترويسات متصفح حقيقية لتجاوز حماية Cloudflare
+// 📌 مسار سحب المنتجات باستخدام معرّف المورد والترويسexclusions الرسمية المعتمدة
 app.get('/api/sync-trendyol', async (req, res) => {
     try {
         const SUPPLIER_ID = '741732';
@@ -19,21 +19,19 @@ app.get('/api/sync-trendyol', async (req, res) => {
 
         const credentials = Buffer.from(`${API_KEY}:${API_SECRET}`).toString('base64');
 
-        // طلب جلب المنتجات مع ترويسات متصفح كاملة
+        // استخدام الـ User-Agent الرسمي بصيغة SupplierId-Integration لتجاوز الفلترة
         const response = await fetch(`https://api.trendyol.com/sapigw/suppliers/${SUPPLIER_ID}/products?approved=true`, {
             method: 'GET',
             headers: {
                 'Authorization': `Basic ${credentials}`,
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-                'Accept': 'application/json, text/plain, */*',
-                'Accept-Language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7',
-                'Connection': 'keep-alive'
+                'User-Agent': `${SUPPLIER_ID} - SelfIntegration`,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         });
 
         const responseText = await response.text();
 
-        // محاولة تحويل الاستجابة إلى JSON إذا نجح العبور
         try {
             const data = JSON.parse(responseText);
             if (!response.ok) {
@@ -47,11 +45,10 @@ app.get('/api/sync-trendyol', async (req, res) => {
                 products: productsList
             });
         } catch (e) {
-            // لو ما زالت الصفحة HTML تظهر، سنطبيها لنرى تفاصيلها
             return res.status(200).json({
                 success: false,
-                message: 'ما زالت حماية Cloudflare تحظر الطلب مباشرة',
-                raw_html: responseText.substring(0, 300)
+                message: 'ما زال خادم ترينديول يحجب الطلب (Cloudflare Challenge)',
+                details: 'تأكد من تفعيل صلاحيات الـ Product Integration من لوحة تحكم تاجر ترينديول API Settings'
             });
         }
 
