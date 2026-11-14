@@ -1,10 +1,20 @@
 [
   {
     "id": 1054793335,
-    "title": "TEKSTİLLA Kadın Triko Takım 3 Parça Kazak ve Geniş Paça Pantolon",
+    "title": "TEKSTİLLA Kadın Triko Takım 3 Parça",
     "price": 450,
     "currency": "TL",
     "image": "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500",
-    "category": "Takım"
+    "category": "Takım",
+    "colors": ["أسود", "بيج", "كحلي"]
+  },
+  {
+    "id": 2001,
+    "title": "TEKSTİLLA حقيبة نسائية فخمة عصرية",
+    "price": 320,
+    "currency": "TL",
+    "image": "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500",
+    "category": "Çanta",
+    "colors": ["أسود", "بني", "بيج"]
   }
 ]
