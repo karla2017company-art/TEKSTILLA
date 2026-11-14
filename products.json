@@ -1,11 +1,15 @@
 [
   {
-    "id": 1,
-    "title": "فستان نسائي سهرة أنيق - TEKSTİLLA",
-    "price": 450,
+   [
+  {
+    "id": 1054793335,
+    "title": "TEKSTİLLA Kadın Triko Takım 3 Parça Kazak ve Geniş Paça Pantolon Kışlık Rahat Ev ve Günlük Kombin",
+    "price": null, 
     "currency": "TL",
-    "image": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500",
-    "category": "Elbise"
+    "category": "Triko Takım",
+    "trendyol_url": "https://www.trendyol.com/tekstilla/kadin-triko-takim-3-parca-kazak-ve-genis-paca-pantolon-kislik-rahat-ev-ve-gunluk-kombin-p-1054793335?boutiqueId=61&merchantId=741732"
+  }
+]
   },
   {
     "id": 2,
