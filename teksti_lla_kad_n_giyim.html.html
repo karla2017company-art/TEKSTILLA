@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEKSTİLLA | تكستيلا - أزياء نسائية فاخرة</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ivory: '#FDFBF7',
+                        cream: '#F4ECE1',
+                        beige: '#E3D5C6',
+                        dustyrose: '#D8B4A0',
+                        burgundy: '#6B2D3C',
+                        charcoal: '#2C2A29',
+                        gold: '#C5A059'
+                    },
+                    fontFamily: {
+                        playfair: ['"Playfair Display"', 'Cairo', 'serif'],
+                        sans: ['Cairo', 'Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FDFBF7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E3D5C6;
+            border-radius: 3px;
+        }
+        .luxury-gradient {
+            background: linear-gradient(135deg, #6B2D3C 0%, #4A1E29 100%);
+        }
+        .gold-shimmer {
+            background: linear-gradient(90deg, #C5A059 0%, #DFC286 50%, #C5A059 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        * { transition-property: color, background-color, border-color, transform, opacity; transition-duration: 200ms; transition-timing-function: ease-in-out; }
+    </style>
+</head>
+<body class="bg-ivory text-charcoal font-sans antialiased selection:bg-burgundy selection:text-ivory">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-charcoal text-ivory text-xs py-2 px-4 text-center font-light tracking-widest flex justify-between items-center">
+        <div class="hidden md:block">أناقة بلا حدود | تصميم تركي فاخر</div>
+        <div>شحن مجاني للطلبات فوق 1500 ليرة تركية | توصيل سريع لكافة المدن</div>
+        <div class="flex items-center gap-4">
+            <span class="cursor-pointer hover:text-dustyrose">TR / AR</span>
+            <span id="admin-toggle-btn" onclick="openAdminGateway()" class="cursor-pointer text-gold hover:underline font-semibold">
+                <i class="fa-solid fa-lock ml-1"></i> لوحة الإدارة
+            </span>
+        </div>
+    </div>
+
+    <!-- HEADER & NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-ivory/90 backdrop-blur-md border-b border-beige shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Mobile Menu Toggle -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-charcoal focus:outline-none text-xl p-2">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <!-- Brand Logo -->
+            <div class="flex flex-col items-center cursor-pointer" onclick="switchTab('shop')">
+                <h1 class="text-2xl sm:text-3xl font-playfair font-bold tracking-wider text-charcoal">TEKSTİLLA</h1>
+                <span class="text-[10px] tracking-[0.3em] uppercase text-burgundy font-semibold">تكستيلا | KADIN GİYİM</span>
+            </div>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 space-x-reverse text-sm font-medium tracking-wide">
+                <a href="#shop-catalog" onclick="switchTab('shop')" class="hover:text-burgundy transition text-burgundy font-semibold border-b-2 border-burgundy pb-1">الرئيسية والمجموعات</a>
+                <a href="#shop-catalog" onclick="filterByCategory('فساتين سهرة')" class="hover:text-burgundy transition">فساتين السهرة</a>
+                <a href="#shop-catalog" onclick="filterByCategory('معاطف وجاكيتات')" class="hover:text-burgundy transition">الملابس الخارجية</a>
+                <a href="#shop-catalog" onclick="filterByCategory('الشنط الفاخرة')" class="hover:text-burgundy transition">الشنط الفاخرة</a>
+                <a href="#shop-catalog" onclick="filterByCategory('ملابس يومية عصرية')" class="hover:text-burgundy transition">الأزياء اليومية</a>
+                <a href="#size-guide" onclick="openSizeGuideModal(event)" class="hover:text-burgundy transition text-gold font-semibold"><i class="fa-solid fa-ruler ml-1"></i>دليل المقاسات</a>
+            </nav>
+
+            <!-- Action Icons (Wishlist, Cart, Customer Account) -->
+            <div class="flex items-center space-x-5 space-x-reverse">
+                <button onclick="openAuthModal('login')" class="relative p-2 text-charcoal hover:text-burgundy flex items-center gap-1 text-xs font-semibold" title="حساب الزبون">
+                    <i class="fa-regular fa-user text-lg"></i>
+                    <span id="user-account-label" class="hidden sm:inline">حسابي</span>
+                </button>
+                <button onclick="openWishlistModal()" class="relative p-2 text-charcoal hover:text-burgundy">
+                    <i class="fa-regular fa-heart text-xl"></i>
+                    <span id="wishlist-badge" class="absolute top-0 right-0 bg-burgundy text-ivory rounded-full text-[10px] w-4 h-4 flex items-center justify-center font-bold hidden">0</span>
+                </button>
+                <button onclick="toggleCartDrawer()" class="relative p-2 text-charcoal hover:text-burgundy">
+                    <i class="fa-solid fa-bag-shopping text-xl"></i>
+                    <span id="cart-badge" class="absolute top-0 right-0 bg-burgundy text-ivory rounded-full text-[10px] w-4 h-4 flex items-center justify-center font-bold">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU DRAWER -->
+    <div id="mobile-menu" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden transition-opacity">
+        <div class="absolute right-0 top-0 bottom-0 w-80 bg-ivory shadow-2xl p-6 flex flex-col justify-between">
+            <div>
+                <div class="flex justify-between items-center mb-8 border-b border-beige pb-4">
+                    <span class="font-playfair text-xl font-bold">القائمة الرئيسية</span>
+                    <button onclick="toggleMobileMenu()" class="text-xl p-2"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="flex flex-col space-y-4 text-base font-medium">
+                    <a href="#shop" onclick="toggleMobileMenu(); switchTab('shop');" class="hover:text-burgundy">الرئيسية</a>
+                    <a href="#shop" onclick="toggleMobileMenu(); filterByCategory('فساتين سهرة');" class="hover:text-burgundy">فساتين السهرة</a>
+                    <a href="#shop" onclick="toggleMobileMenu(); filterByCategory('معاطف وجاكيتات');" class="hover:text-burgundy">الملابس الخارجية والمعاطف</a>
+                    <a href="#shop" onclick="toggleMobileMenu(); filterByCategory('الشنط الفاخرة');" class="hover:text-burgundy">الشنط الفاخرة</a>
+                    <a href="#shop" onclick="toggleMobileMenu(); filterByCategory('ملابس يومية عصرية');" class="hover:text-burgundy">الأزياء اليومية</a>
+                    <a href="#" onclick="toggleMobileMenu(); openAuthModal('login');" class="hover:text-burgundy text-burgundy font-semibold"><i class="fa-solid fa-user ml-1"></i>حساب الزبون وتسجيل الدخول</a>
+                    <a href="#" onclick="toggleMobileMenu(); openSizeGuideModal(event);" class="hover:text-burgundy text-gold font-semibold">دليل المقاسات</a>
+                </div>
+            </div>
+            <div class="border-t border-beige pt-4 text-xs text-center text-gray-500">
+                TEKSTİLLA Kadın Giyim &copy; 2026 جميع الحقوق محفوظة
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN APP CONTENT -->
+    <main id="main-content">
+        <!-- HERO SECTION -->
+        <section class="relative bg-cream overflow-hidden py-16 lg:py-24 border-b border-beige">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 space-y-6 text-right">
+                        <span class="inline-block bg-beige text-charcoal text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest">تشكيلة ربيع وصيف 2026</span>
+                        <h1 class="text-4xl sm:text-6xl font-playfair font-bold text-charcoal leading-tight">
+                            فخامة التصميم التركي <br><span class="text-burgundy italic">تلامس أرقى أوقاتك</span>
+                        </h1>
+                        <p class="text-gray-600 text-base sm:text-lg max-w-xl font-light leading-relaxed">
+                            اكتشفي تشكيلة تكستيلا الحصرية المصنوعة من أفخر الأقمشة العالمية. تصاميم فريدة تعكس أناقة وثقة المرأة العصرية بكل تفصيلة.
+                        </p>
+                        <div class="flex flex-wrap gap-4 pt-4">
+                            <a href="#shop-catalog" class="luxury-gradient text-ivory font-medium px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition flex items-center gap-2">
+                                <span>تصفح التشكيلة الجديدة</span>
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                            <button onclick="openSizeGuideModal(event)" class="bg-ivory border-2 border-beige text-charcoal font-medium px-6 py-4 rounded-xl hover:border-burgundy transition">
+                                دليل المقاسات الذكي
+                            </button>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative mx-auto w-72 sm:w-96 h-[450px] sm:h-[520px] rounded-2xl overflow-hidden shadow-2xl border-4 border-ivory">
+                            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=800" alt="أزياء نسائية فاخرة" class="w-full h-full object-cover transform hover:scale-105 transition duration-700">
+                            <div class="absolute bottom-4 right-4 bg-ivory/90 backdrop-blur-md p-4 rounded-xl shadow-md border border-beige">
+                                <p class="text-xs font-bold text-burgundy">فستان سهرة حريري فاخر</p>
+                                <p class="text-sm font-playfair font-bold text-charcoal">3,850 ليرة تركية</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VALUE PROPOSITIONS -->
+        <section class="bg-ivory py-10 border-b border-beige/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="p-4 flex flex-col items-center">
+                    <i class="fa-solid fa-gem text-burgundy text-2xl mb-2"></i>
+                    <h3 class="font-bold text-sm">جودة تصنيع فائقة</h3>
+                    <p class="text-xs text-gray-500 mt-1">أقمشة أوروبية وعثمانية مختارة بعناية</p>
+                </div>
+                <div class="p-4 flex flex-col items-center">
+                    <i class="fa-solid fa-truck-fast text-burgundy text-2xl mb-2"></i>
+                    <h3 class="font-bold text-sm">شحن وتوصيل سريع</h3>
+                    <p class="text-xs text-gray-500 mt-1">توصيل آمن لجميع المحافظات والدول</p>
+                </div>
+                <div class="p-4 flex flex-col items-center">
+                    <i class="fa-solid fa-rotate-left text-burgundy text-2xl mb-2"></i>
+                    <h3 class="font-bold text-sm">استبدال سهل وآمن</h3>
+                    <p class="text-xs text-gray-500 mt-1">ضمان الاسترجاع خلال 14 يوماً</p>
+                </div>
+                <div class="p-4 flex flex-col items-center">
+                    <i class="fa-solid fa-headset text-burgundy text-2xl mb-2"></i>
+                    <h3 class="font-bold text-sm">خدمة عملاء مميزة</h3>
+                    <p class="text-xs text-gray-500 mt-1">دعم فني مستمر لتلبية كافة احتياجاتك</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CUSTOMER VIP DISCOUNTS & ORDER TRACKING BANNER -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-10">
+            <div class="bg-gradient-to-r from-charcoal to-burgundy text-ivory rounded-2xl p-6 sm:p-10 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="space-y-3 text-right">
+                    <span class="bg-gold text-charcoal text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">عضوية تكستيلا الفاخرة</span>
+                    <h3 class="font-playfair text-2xl sm:text-3xl font-bold">تتبعي طلباتك، خصوماتك الحصرية، ونقاط الولاء</h3>
+                    <p class="text-xs sm:text-sm text-gray-200 font-light max-w-xl">سجلي دخولك الآن لتحصلي على كوبون خصم 15% على أول طلبية، مع ميزة تتبع خط سير الشحنة لحظة بلحظة عبر شركات الشحن التركية.</p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                    <button onclick="openAuthModal('login')" class="bg-ivory text-charcoal hover:bg-cream font-bold px-6 py-3 rounded-xl text-xs shadow transition">تسجيل دخول الزبونة</button>
+                    <button onclick="openOrderTrackerModal()" class="border border-ivory/60 hover:bg-ivory/10 font-bold px-6 py-3 rounded-xl text-xs transition">تتبع طلبي برقم البوليصة</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SHOP CATALOG SECTION -->
+        <section id="shop-catalog" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 border-b border-beige pb-6">
+                <div>
+                    <span class="text-burgundy uppercase text-xs font-bold tracking-widest">معرض المنتجات</span>
+                    <h2 class="text-3xl font-playfair font-bold text-charcoal mt-1">تشكيلة تكستيلا الحصرية</h2>
+                </div>
+                <!-- Categories Filter Tabs -->
+                <div class="flex flex-wrap gap-2 mt-4 md:mt-0" id="category-filters">
+                    <button onclick="filterByCategory('الكل')" class="category-btn px-4 py-2 rounded-full text-xs font-medium bg-burgundy text-ivory shadow">الكل</button>
+                    <button onclick="filterByCategory('فساتين سهرة')" class="category-btn px-4 py-2 rounded-full text-xs font-medium bg-cream text-charcoal hover:bg-beige">فساتين سهرة</button>
+                    <button onclick="filterByCategory('معاطف وجاكيتات')" class="category-btn px-4 py-2 rounded-full text-xs font-medium bg-cream text-charcoal hover:bg-beige">معاطف وجاكيتات</button>
+                    <button onclick="filterByCategory('الشنط الفاخرة')" class="category-btn px-4 py-2 rounded-full text-xs font-medium bg-cream text-charcoal hover:bg-beige">الشنط الفاخرة</button>
+                    <button onclick="filterByCategory('ملابس يومية عصرية')" class="category-btn px-4 py-2 rounded-full text-xs font-medium bg-cream text-charcoal hover:bg-beige">ملابس يومية عصرية</button>
+                    <button onclick="filterByCategory('عبايات وأطقم راقية')" class="category-btn px-4 py-2 rounded-full text-xs font-medium bg-cream text-charcoal hover:bg-beige">عبايات وأطقم</button>
+                </div>
+            </div>
+
+            <!-- PRODUCT GRID -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Products injected via JS -->
+            </div>
+        </section>
+
+        <!-- BRAND STORY -->
+        <section class="bg-cream py-20 border-t border-b border-beige my-12">
+            <div class="max-w-5xl mx-auto px-4 text-center space-y-6">
+                <h2 class="text-3xl sm:text-4xl font-playfair font-bold text-charcoal">"حيث يلتقي التراث الراقي بالموضة المعاصرة"</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto font-light leading-relaxed">
+                    نؤمن في علامة تكستيلا بأن الأناقة تبدأ من أدق التفاصيل. صُممت كل قطعة في ورشاتنا بعناية فائقة لتلائم المرأة التي تبحث عن التميز والراحة في آنٍ واحد.
+                </p>
+                <div class="pt-4">
+                    <span class="font-playfair text-xl text-burgundy font-semibold">TEKSTİLLA İSTANBUL</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-charcoal text-ivory pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <div class="space-y-4">
+                <h3 class="text-2xl font-playfair font-bold tracking-wider">TEKSTİLLA</h3>
+                <p class="text-xs text-gray-400 leading-relaxed">
+                    المتجر التركي الرائد للأزياء النسائية الفاخرة. العنوان الأول للأناقة الراقية والذوق الرفيع.
+                </p>
+                <div class="flex space-x-4 space-x-reverse text-lg">
+                    <a href="#" class="hover:text-dustyrose"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-dustyrose"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" class="hover:text-dustyrose"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold text-sm tracking-widest text-gold mb-4 uppercase">روابط سريعة</h4>
+                <ul class="space-y-2 text-xs text-gray-300">
+                    <li><a href="#shop-catalog" onclick="switchTab('shop')" class="hover:text-ivory">الرئيسية</a></li>
+                    <li><a href="#shop-catalog" onclick="filterByCategory('فساتين سهرة')" class="hover:text-ivory">فساتين السهرة</a></li>
+                    <li><a href="#shop-catalog" onclick="filterByCategory('الشنط الفاخرة')" class="hover:text-ivory">الشنط الفاخرة</a></li>
+                    <li><a href="#" onclick="openSizeGuideModal(event)" class="hover:text-ivory">دليل المقاسات</a></li>
+                    <li><a href="#" onclick="openAdminGateway()" class="hover:text-gold font-semibold">لوحة الإدارة</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-sm tracking-widest text-gold mb-4 uppercase">خدمة العملاء</h4>
+                <ul class="space-y-2 text-xs text-gray-300">
+                    <li><a href="#" onclick="openOrderTrackerModal()" class="hover:text-ivory">تتبع الطلبية</a></li>
+                    <li><a href="#" class="hover:text-ivory">سياسة الإرجاع والاستبدال</a></li>
+                    <li><a href="#" class="hover:text-ivory">الشحن والتوصيل</a></li>
+                    <li><a href="#" class="hover:text-ivory">تواصل معنا عبر واتساب</a></li>
+                </ul>
+            </div>
+            <div class="space-y-4">
+                <h4 class="font-bold text-sm tracking-widest text-gold mb-4 uppercase">النشرة البريدية</h4>
+                <p class="text-xs text-gray-400">انضمي لقائمتنا البريدية لتكوني أول من يطلع على التشكيلات الحصرية والخصومات.</p>
+                <div class="flex">
+                    <input type="email" placeholder="البريد الإلكتروني" class="bg-charcoal border border-beige/40 rounded-r-lg px-3 py-2 text-xs text-ivory focus:outline-none w-full">
+                    <button class="bg-burgundy text-ivory px-4 rounded-l-lg text-xs font-bold hover:bg-burgundy/85">اشتراك</button>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 border-t border-gray-800 pt-6 text-center text-xs text-gray-500">
+            &copy; 2026 TEKSTİLLA | تكستيلا (Kadın Giyim). جميع الحقوق محفوظة.
+        </div>
+    </footer>
+
+    <!-- SHOPPING CART DRAWER -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden transition-opacity flex justify-end">
+        <div class="w-full max-w-md bg-ivory h-full shadow-2xl flex flex-col justify-between transform transition-transform">
+            <div class="p-6 border-b border-beige flex justify-between items-center bg-cream/50">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-bag-shopping text-burgundy"></i>
+                    <h3 class="font-playfair font-bold text-lg">سلة المشتريات</h3>
+                </div>
+                <button onclick="toggleCartDrawer()" class="p-2 text-xl hover:text-burgundy"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="cart-items-container" class="p-6 overflow-y-auto flex-grow space-y-4"></div>
+            <div class="p-6 border-t border-beige bg-cream/30 space-y-4">
+                <div class="flex justify-between items-center text-sm">
+                    <span class="text-gray-600">المجموع الفرعي:</span>
+                    <span id="cart-subtotal" class="font-bold text-lg font-playfair">0 ل.ت</span>
+                </div>
+                <div class="flex justify-between items-center text-xs text-gray-500">
+                    <span>الشحن:</span>
+                    <span>مجاني (للطلبات فوق 1500 ل.ت)</span>
+                </div>
+                <div class="border-t border-beige pt-2 flex justify-between items-center font-bold text-base">
+                    <span>الإجمالي الكلي:</span>
+                    <span id="cart-total" class="text-burgundy font-playfair text-xl">0 ل.ت</span>
+                </div>
+                <button onclick="checkout()" class="w-full luxury-gradient text-ivory py-3 rounded-xl font-medium shadow hover:opacity-95 text-center block">
+                    إتمام الشراء والدفع الآمن
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCT DETAIL VIEW MODAL -->
+    <div id="pdp-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-ivory w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col md:flex-row relative">
+            <button onclick="closePdpModal()" class="absolute top-4 left-4 z-10 bg-ivory/80 rounded-full p-2 w-10 h-10 flex items-center justify-center shadow hover:bg-burgundy hover:text-ivory transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="w-full md:w-1/2 bg-cream p-6 flex flex-col justify-between">
+                <div class="relative h-80 sm:h-96 rounded-xl overflow-hidden shadow-md bg-white">
+                    <img id="pdp-main-img" src="" alt="صورة المنتج" class="w-full h-full object-cover">
+                </div>
+                <div class="flex justify-center gap-3 mt-4" id="pdp-angles"></div>
+            </div>
+            <div class="w-full md:w-1/2 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto">
+                <div class="space-y-4">
+                    <span id="pdp-category" class="bg-beige text-charcoal text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider"></span>
+                    <h2 id="pdp-title" class="text-2xl font-playfair font-bold text-charcoal"></h2>
+                    <p id="pdp-price" class="text-xl font-playfair font-bold text-burgundy"></p>
+                    <p id="pdp-desc" class="text-xs text-gray-600 leading-relaxed font-light"></p>
+                    
+                    <div>
+                        <label class="block text-xs font-bold text-charcoal mb-2 uppercase tracking-wide">اختر اللون:</label>
+                        <div id="pdp-colors" class="flex gap-2"></div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="text-xs font-bold text-charcoal uppercase tracking-wide">اختر المقاس:</label>
+                            <button onclick="openSizeGuideModal(event)" class="text-xs text-burgundy underline hover:text-charcoal">دليل المقاسات</button>
+                        </div>
+                        <div id="pdp-sizes" class="flex gap-2">
+                            <button onclick="selectSize('36 (S)')" class="size-btn px-3 py-2 border border-beige rounded-lg text-xs font-semibold hover:border-burgundy">36 (S)</button>
+                            <button onclick="selectSize('38 (M)')" class="size-btn px-3 py-2 border border-beige rounded-lg text-xs font-semibold hover:border-burgundy">38 (M)</button>
+                            <button onclick="selectSize('40 (L)')" class="size-btn px-3 py-2 border border-beige rounded-lg text-xs font-semibold hover:border-burgundy">40 (L)</button>
+                            <button onclick="selectSize('42 (XL)')" class="size-btn px-3 py-2 border border-beige rounded-lg text-xs font-semibold hover:border-burgundy">42 (XL)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6 mt-6 border-t border-beige flex gap-3">
+                    <button id="pdp-add-btn" onclick="addPdpToCart()" class="flex-grow luxury-gradient text-ivory py-3 rounded-xl font-medium shadow hover:opacity-95 text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span>إضافة إلى السلة</span>
+                    </button>
+                    <button id="pdp-wishlist-btn" onclick="togglePdpWishlist()" class="w-12 h-12 border-2 border-beige rounded-xl flex items-center justify-center text-charcoal hover:border-burgundy hover:text-burgundy">
+                        <i class="fa-regular fa-heart text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SIZE GUIDE MODAL -->
+    <div id="size-guide-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-ivory w-full max-w-lg rounded-2xl shadow-2xl p-6 relative">
+            <button onclick="closeSizeGuideModal()" class="absolute top-4 left-4 text-xl p-2"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="font-playfair text-xl font-bold mb-4 text-center">دليل المقاسات القياسي (تركي / عالمي)</h3>
+            <p class="text-xs text-gray-500 mb-4 text-center">كافة المقاسات مقدرة بالسنتيمتر وتتوافق مع معايير الأناقة التركية.</p>
+            <div class="overflow-x-auto">
+                <table class="w-full text-xs text-center border-collapse border border-beige">
+                    <thead>
+                        <tr class="bg-cream text-charcoal">
+                            <th class="border border-beige p-2">المقاس</th>
+                            <th class="border border-beige p-2">الصدر (cm)</th>
+                            <th class="border border-beige p-2">الخصر (cm)</th>
+                            <th class="border border-beige p-2">الأرداف (cm)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="border border-beige p-2 font-bold">36 (S)</td><td class="border border-beige p-2">84-88</td><td class="border border-beige p-2">66-70</td><td class="border border-beige p-2">92-96</td></tr>
+                        <tr class="bg-cream/40"><td class="border border-beige p-2 font-bold">38 (M)</td><td class="border border-beige p-2">88-92</td><td class="border border-beige p-2">70-74</td><td class="border border-beige p-2">96-100</td></tr>
+                        <tr><td class="border border-beige p-2 font-bold">40 (L)</td><td class="border border-beige p-2">92-96</td><td class="border border-beige p-2">74-78</td><td class="border border-beige p-2">100-104</td></tr>
+                        <tr class="bg-cream/40"><td class="border border-beige p-2 font-bold">42 (XL)</td><td class="border border-beige p-2">96-100</td><td class="border border-beige p-2">78-82</td><td class="border border-beige p-2">104-108</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-6 text-center">
+                <button onclick="closeSizeGuideModal()" class="bg-charcoal text-ivory px-6 py-2 rounded-xl text-xs font-semibold">حسناً، فهمت</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- WISHLIST MODAL -->
+    <div id="wishlist-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-ivory w-full max-w-lg rounded-2xl shadow-2xl p-6 relative max-h-[80vh] flex flex-col">
+            <button onclick="closeWishlistModal()" class="absolute top-4 left-4 text-xl p-2"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="font-playfair text-xl font-bold mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-heart text-burgundy"></i> قائمة الأمنيات المفضلة
+            </h3>
+            <div id="wishlist-items-container" class="overflow-y-auto flex-grow space-y-3 py-2"></div>
+            <div class="mt-4 pt-4 border-t border-beige text-center">
+                <button onclick="closeWishlistModal()" class="bg-charcoal text-ivory px-6 py-2 rounded-xl text-xs font-semibold">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CUSTOMER AUTH MODAL (LOGIN / REGISTER WITH PHONE & ADDRESS) -->
+    <div id="auth-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-ivory w-full max-w-md rounded-2xl shadow-2xl overflow-hidden relative">
+            <button onclick="closeAuthModal()" class="absolute top-4 left-4 text-xl p-2 z-10"><i class="fa-solid fa-xmark"></i></button>
+            <div class="bg-burgundy text-ivory p-6 text-center">
+                <h3 id="auth-modal-title" class="font-playfair text-xl font-bold">تسجيل دخول الزبونات</h3>
+                <p id="auth-modal-subtitle" class="text-xs text-cream/80 mt-1">انضمي لعائلة تكستيلا واستمتعي بالعروض والخصومات</p>
+            </div>
+            
+            <div class="p-6 space-y-4">
+                <!-- Tabs -->
+                <div class="flex border-b border-beige pb-2 text-xs font-bold justify-center gap-6">
+                    <button onclick="switchAuthMode('login')" id="auth-tab-login" class="text-burgundy border-b-2 border-burgundy pb-1">تسجيل الدخول</button>
+                    <button onclick="switchAuthMode('register')" id="auth-tab-register" class="text-gray-500 hover:text-burgundy pb-1">حساب جديد</button>
+                </div>
+
+                <!-- LOGIN FORM -->
+                <form id="form-login" onsubmit="handleCustomerLogin(event)" class="space-y-4 pt-2">
+                    <div>
+                        <label class="block text-xs font-semibold mb-1">البريد الإلكتروني أو رقم الهاتف</label>
+                        <input type="text" id="login-identifier" required class="w-full bg-cream/30 border border-beige rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-burgundy" placeholder="name@example.com أو +90...">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1">كلمة المرور</label>
+                        <input type="password" id="login-password" required class="w-full bg-cream/30 border border-beige rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-burgundy" placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="w-full luxury-gradient text-white py-3 rounded-xl text-xs font-bold shadow hover:opacity-95">
+                        تسجيل الدخول للمتجر
+                    </button>
+                </form>
+
+                <!-- REGISTER FORM (WITH PHONE & ADDRESS REQUIRED) -->
+                <form id="form-register" onsubmit="handleCustomerRegister(event)" class="space-y-4 pt-2 hidden">
+                    <div>
+                        <label class="block text-xs font-semibold mb-1">الاسم الكامل</label>
+                        <input type="text" id="reg-name" required class="w-full bg-cream/30 border border-beige rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-burgundy" placeholder="فاطمة الزهراء">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1">البريد الإلكتروني</label>
+                        <input type="email" id="reg-email" required class="w-full bg-cream/30 border border-beige rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-burgundy" placeholder="fatima@example.com">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1">رقم الهاتف (واتساب / المحمول)*</label>
+                        <input type="tel" id="reg-phone" required class="w-full bg-cream/30 border border-beige rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-burgundy" placeholder="+90 530 000 0000">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1">عنوان التوصيل التفصيلي (المدينة، الحي، الشارع)*</label>
+                        <textarea id="reg-address" required rows="2" class="w-full bg-cream/30 border border-beige rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-burgundy" placeholder="إسطنبول، الفاتح، شارع التاريخ..."></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1">كلمة المرور</label>
+                        <input type="password" id="reg-password" required class="w-full bg-cream/30 border border-beige rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-burgundy" placeholder="••••••••">
+                    </div>
+                    <div class="bg-cream p-3 rounded-lg text-[11px] text-burgundy font-medium flex items-center gap-2">
+                        <i class="fa-solid fa-gift text-gold text-base"></i>
+                        <span>احصلي فوراً على كوبون خصم ترحيبي 15% (TEKST15) عند التسجيل!</span>
+                    </div>
+                    <button type="submit" class="w-full luxury-gradient text-white py-3 rounded-xl text-xs font-bold shadow hover:opacity-95">
+                        إنشاء حساب جديد والحصول على الخصم
+                    </button>
+                </form>
+
+                <!-- Customer Profile View (When Logged In) -->
+                <div id="customer-profile-box" class="hidden space-y-4">
+                    <div class="bg-cream p-4 rounded-xl text-center space-y-2 border border-beige">
+                        <div class="w-14 h-14 bg-burgundy text-ivory rounded-full flex items-center justify-center text-xl font-bold mx-auto font-playfair" id="profile-initials">ف</div>
+                        <h4 class="font-bold text-sm text-charcoal" id="profile-name">أهلاً بك، زبونتنا الغالية</h4>
+                        <p class="text-xs text-gray-500" id="profile-email">email@domain.com</p>
+                        <p class="text-[11px] text-gray-600" id="profile-phone-display"><i class="fa-solid fa-phone ml-1"></i> الهاتف: --</p>
+                        <p class="text-[11px] text-gray-600" id="profile-address-display"><i class="fa-solid fa-location-dot ml-1"></i> العنوان: --</p>
+                        <div class="bg-ivory p-2 rounded-lg border border-beige text-[11px] font-semibold text-burgundy mt-2">
+                            رصيد نقاط الولاء: <span id="profile-points">250</span> نقطة | الخصم المتاح: 15%
+                        </div>
+                    </div>
+                    <button onclick="logoutCustomer()" class="w-full bg-red-50 text-red-600 border border-red-200 py-2.5 rounded-xl text-xs font-bold hover:bg-red-100">
+                        تسجيل الخروج من الحساب
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ORDER TRACKING MODAL -->
+    <div id="order-tracker-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-ivory w-full max-w-lg rounded-2xl shadow-2xl p-6 relative">
+            <button onclick="closeOrderTrackerModal()" class="absolute top-4 left-4 text-xl p-2"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="font-playfair text-xl font-bold mb-2 text-center">تتبع حالة طلبيتك وشحنتك</h3>
+            <p class="text-xs text-gray-500 mb-6 text-center">أدخلي رقم بوليصة الشحن أو رقم الطلب (مثال: TX-84920)</p>
+            
+            <div class="flex gap-2 mb-6">
+                <input type="text" id="tracking-input" placeholder="رقم الطلب أو البوليصة..." class="flex-grow bg-cream/40 border border-beige rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-burgundy">
+                <button onclick="trackOrderQuery()" class="bg-charcoal text-ivory px-6 py-2.5 rounded-xl text-xs font-bold hover:bg-burgundy">بحث</button>
+            </div>
+
+            <div id="tracking-result-box" class="hidden bg-cream/50 p-5 rounded-xl border border-beige space-y-4">
+                <div class="flex justify-between items-center border-b border-beige pb-3">
+                    <div>
+                        <p class="text-[10px] text-gray-500">رقم الطلب</p>
+                        <p class="font-bold text-xs" id="res-order-id">TX-84920</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-gray-500">شركة الشحن</p>
+                        <p class="font-bold text-xs text-burgundy">Aramex / Yurtiçi Kargo</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-gray-500">الحالة الحالية</p>
+                        <span class="bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded-full font-bold">جاري التوصيل</span>
+                    </div>
+                </div>
+
+                <div class="space-y-3 text-xs">
+                    <div class="flex items-center gap-3">
+                        <div class="w-4 h-4 rounded-full bg-burgundy flex items-center justify-center text-ivory text-[9px]"><i class="fa-solid fa-check"></i></div>
+                        <div>
+                            <p class="font-bold">تم تجهيز الطلب في ورشات إسطنبول</p>
+                            <p class="text-[10px] text-gray-400">اليوم، 10:30 صباحاً</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-4 h-4 rounded-full bg-burgundy flex items-center justify-center text-ivory text-[9px]"><i class="fa-solid fa-check"></i></div>
+                        <div>
+                            <p class="font-bold">خرجت الشحنة مع مندوب التوصيل السريع</p>
+                            <p class="text-[10px] text-gray-400">اليوم، 02:15 ظهراً</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN LOGIN GATEWAY MODAL (Separate Login for Store Administration) -->
+    <div id="admin-gateway-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-ivory w-full max-w-md rounded-2xl shadow-2xl overflow-hidden border border-gold/40 relative">
+            <button onclick="closeAdminGateway()" class="absolute top-4 left-4 text-xl p-2 z-10"><i class="fa-solid fa-xmark"></i></button>
+            <div class="bg-charcoal text-ivory p-6 text-center space-y-2 border-b border-gold/20">
+                <i class="fa-solid fa-shield-halved text-gold text-3xl mb-1"></i>
+                <h3 class="font-playfair text-xl font-bold">بوابة إدارة متجر تكستيلا (Admin Portal)</h3>
+                <p class="text-xs text-gray-400">تسجيل دخول خاص بمديري النظام ومسؤولي المخزون والربط</p>
+            </div>
+            
+            <form id="admin-gateway-form" onsubmit="handleAdminLogin(event)" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold mb-1">اسم مستخدم الإدارة</label>
+                    <input type="text" id="admin-user-input" required class="w-full bg-cream/50 border border-beige rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-burgundy" placeholder="admin">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold mb-1">كلمة مرور الإدارة السرية (PIN / Password)</label>
+                    <input type="password" id="admin-pass-input" required class="w-full bg-cream/50 border border-beige rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-burgundy" placeholder="••••••••">
+                </div>
+                <div class="bg-amber-50 border border-amber-200 p-3 rounded-lg text-[11px] text-amber-800">
+                    <i class="fa-solid fa-triangle-exclamation ml-1"></i> هذه المنطقة مقيدة. الافتراضي للتجربة: <code class="bg-white px-1 py-0.5 rounded font-mono font-bold">admin / 2026</code>
+                </div>
+                <button type="submit" class="w-full bg-gold text-charcoal hover:bg-gold/90 font-bold py-3 rounded-xl text-xs shadow transition">
+                    دخول إلى لوحة التحكم الإدارية
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ADMIN DASHBOARD PANEL MODAL -->
+    <div id="admin-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-ivory w-full max-w-5xl rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
+            <div class="bg-charcoal text-ivory p-6 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-lock text-gold"></i>
+                    <h3 class="font-playfair text-xl font-bold">لوحة إدارة المتجر والربط مع المنصات التركية</h3>
+                </div>
+                <button onclick="toggleAdminModal()" class="text-ivory hover:text-gold text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <!-- Admin Tabs Navigation -->
+            <div class="flex border-b border-beige bg-cream/80 px-6 pt-3 gap-6 text-xs font-bold">
+                <button onclick="switchAdminTab('inventory')" id="admin-tab-inv" class="pb-3 border-b-2 border-burgundy text-burgundy">إدارة المخزون والمنتجات</button>
+                <button onclick="switchAdminTab('marketplaces')" id="admin-tab-mkt" class="pb-3 text-gray-500 hover:text-burgundy">الربط مع المنصات (Trendyol / Hepsiburada / N11)</button>
+            </div>
+
+            <div class="p-6 overflow-y-auto flex-grow space-y-8">
+                
+                <!-- TAB 1: INVENTORY & ADD PRODUCT -->
+                <div id="admin-section-inventory" class="space-y-8">
+                    <!-- Add New Product Form -->
+                    <div class="bg-cream/60 p-6 rounded-xl border border-beige">
+                        <h4 class="font-bold text-sm mb-4 text-burgundy"><i class="fa-solid fa-plus-circle ml-1"></i> إضافة منتج جديد مع رفع الصورة محلياً</h4>
+                        <form id="add-product-form" onsubmit="handleAddNewProduct(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">اسم المنتج</label>
+                                <input type="text" id="new-title" required class="w-full bg-ivory border border-beige rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-burgundy" placeholder="مثال: فستان مخملي ملكي">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">التصنيف</label>
+                                <select id="new-category" class="w-full bg-ivory border border-beige rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-burgundy">
+                                    <option value="فساتين سهرة">فساتين سهرة</option>
+                                    <option value="معاطف وجاكيتات">معاطف وجاكيتات</option>
+                                    <option value="الشنط الفاخرة">الشنط الفاخرة</option>
+                                    <option value="ملابس يومية عصرية">ملابس يومية عصرية</option>
+                                    <option value="عبايات وأطقم راقية">عبايات وأطقم راقية</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">السعر (ليرة تركية)</label>
+                                <input type="number" id="new-price" required class="w-full bg-ivory border border-beige rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-burgundy" placeholder="3200">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">تحميل صورة المنتج من جهازك</label>
+                                <input type="file" id="new-image-file" accept="image/*" class="w-full bg-ivory border border-beige rounded-lg px-2 py-1.5 text-xs focus:outline-none focus:border-burgundy file:mr-2 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-burgundy file:text-ivory hover:file:opacity-90">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">الألوان المتاحة (مفصولة بفواصل)</label>
+                                <input type="text" id="new-colors" required class="w-full bg-ivory border border-beige rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-burgundy" placeholder="أسود, بيج, أبيض, ذهبي">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">الوصف المختصر</label>
+                                <input type="text" id="new-desc" required class="w-full bg-ivory border border-beige rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-burgundy" placeholder="تصميم تركي راقي...">
+                            </div>
+                            <div class="sm:col-span-2 lg:col-span-3 flex justify-end">
+                                <button type="submit" class="luxury-gradient text-ivory px-6 py-2.5 rounded-xl text-xs font-bold shadow hover:opacity-95">
+                                    حفظ وإضافة المنتج للمتجر
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Manage Existing Inventory -->
+                    <div>
+                        <h4 class="font-bold text-sm mb-4 text-charcoal"><i class="fa-solid fa-boxes-stacked ml-1"></i> إدارة المخزون الحالي والمنتجات</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-xs text-right border-collapse border border-beige">
+                                <thead>
+                                    <tr class="bg-cream text-charcoal">
+                                        <th class="border border-beige p-3">صورة</th>
+                                        <th class="border border-beige p-3">اسم المنتج</th>
+                                        <th class="border border-beige p-3">التصنيف</th>
+                                        <th class="border border-beige p-3">السعر</th>
+                                        <th class="border border-beige p-3">الألوان</th>
+                                        <th class="border border-beige p-3 text-center">الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-inventory-list">
+                                    <!-- Injected via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: MARKETPLACES INTEGRATION (Trendyol, Hepsiburada, N11) -->
+                <div id="admin-section-marketplaces" class="space-y-6 hidden">
+                    <div class="bg-cream/40 p-6 rounded-xl border border-beige">
+                        <h4 class="font-playfair font-bold text-base text-charcoal mb-2"><i class="fa-solid fa-globe text-burgundy ml-2"></i> ربط وتزامن متجر تكستيلا مع المنصات الكبرى في تركيا</h4>
+                        <p class="text-xs text-gray-600 mb-6">مزامنة المنتجات باتجاهين: نشر المنتجات، أو **سحب منتجاتك مباشرة من المنصات** باستخدام رقم البائع (Cari ID / Satıcı ID) وبيانات المصادقة الرسمية.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <!-- Trendyol Card with Complete Auth Fields including Cari ID / Satıcı ID -->
+                            <div class="bg-ivory border border-beige rounded-xl p-5 flex flex-col justify-between shadow-sm">
+                                <div>
+                                    <div class="flex items-center justify-between mb-3">
+                                        <h5 class="font-bold text-sm text-[#F27A1A]">Trendyol (ترينديول)</h5>
+                                        <span id="status-trendyol" class="text-[10px] px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-800 font-semibold">غير متصل</span>
+                                    </div>
+                                    <p class="text-[11px] text-gray-500 mb-3">أدخل بيانات الربط الرسمية لحساب البائع في Trendyol:</p>
+                                    <div class="space-y-2 mb-4">
+                                        <input type="text" id="api-cari-trendyol" placeholder="Satıcı ID / Cari ID (رقم البائع)" class="w-full border border-beige rounded-lg px-3 py-1.5 text-xs bg-cream/30">
+                                        <input type="text" id="api-supplier-trendyol" placeholder="Entegrasyon Referans Kodu (Supplier ID)" class="w-full border border-beige rounded-lg px-3 py-1.5 text-xs bg-cream/30">
+                                        <input type="text" id="api-key-trendyol" placeholder="API Key (Kullanıcı Adı)" class="w-full border border-beige rounded-lg px-3 py-1.5 text-xs bg-cream/30">
+                                        <input type="password" id="api-secret-trendyol" placeholder="API Secret (Şifre)" class="w-full border border-beige rounded-lg px-3 py-1.5 text-xs bg-cream/30">
+                                        <input type="password" id="api-token-trendyol" placeholder="Access Token" class="w-full border border-beige rounded-lg px-3 py-1.5 text-xs bg-cream/30">
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <button onclick="connectMarketplace('trendyol')" id="btn-connect-trendyol" class="w-full bg-[#F27A1A] text-white py-2 rounded-lg text-xs font-bold hover:opacity-90">مصادقة وربط ترينديول</button>
+                                    <div id="sync-actions-trendyol" class="hidden space-y-1.5">
+                                        <button onclick="syncCatalog('trendyol')" class="w-full border border-[#F27A1A] text-[#F27A1A] py-1.5 rounded-lg text-xs font-bold hover:bg-orange-50">تصدير المنتجات لترينديول</button>
+                                        <button onclick="importProductsFrom('trendyol')" class="w-full bg-[#F27A1A] text-white py-1.5 rounded-lg text-xs font-bold hover:opacity-90 shadow"><i class="fa-solid fa-download ml-1"></i> سحب المنتجات عبر Trendyol API</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Hepsiburada Card with Cari ID / Satıcı ID -->
+                            <div class="bg-ivory border border-beige rounded-xl p-5 flex flex-col justify-between shadow-sm">
+                                <div>
+                                    <div class="flex items-center justify-between mb-3">
+                                        <h5 class="font-bold text-sm text-[#FF6000]">Hepsiburada (هبسي بوردا)</h5>
+                                        <span id="status-hepsiburada" class="text-[10px] px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-800 font-semibold">غير متصل</span>
+                                    </div>
+                                    <p class="text-[11px] text-gray-500 mb-3">بيانات المصادقة لمتجر Hepsiburada B2B:</p>
+                                    <div class="space-y-2 mb-4">
+                                        <input type="text" id="api-cari-hepsiburada" placeholder="Satıcı ID / Cari ID (رقم البائع)" class="w-full border border-beige rounded-lg px-3 py-1.5 text-xs bg-cream/30">
+                                        <input type="text" id="api-key-hepsiburada" placeholder="Merchant Username" class="w-full border border-beige rounded-lg px-3 py-1.5 text-xs bg-cream/30">
+                                        <input type="password" id="api-secret-hepsiburada" placeholder="Merchant Password / Token" class="w-full border border-beige rounded-lg px-3 py-1.5 text-xs bg-cream/30">
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <button onclick="connectMarketplace('hepsiburada')" id="btn-connect-hepsiburada" class="w-full bg-[#FF6000] text-white py-2 rounded-lg text-xs font-bold hover:opacity-90">ربط وتفعيل هبسي بوردا</button>
+                                    <div id="sync-actions-hepsiburada" class="hidden space-y-1.5">
+                                        <button onclick="syncCatalog('hepsiburada')" class="w-full border border-[#FF6000] text-[#FF6000] py-1.5 rounded-lg text-xs font-bold hover:bg-orange-50">تصدير المنتجات لهبسي بوردا</button>
+                                        <button onclick="importProductsFrom('hepsiburada')" class="w-full bg-[#FF6000] text-white py-1.5 rounded-lg text-xs font-bold hover:opacity-90"><i class="fa-solid fa-download ml-1"></i> سحب المنتجات من هبسي بوردا</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- N11 Card with Cari ID / Satıcı ID -->
+                            <div class="bg-ivory border border-beige rounded-xl p-5 flex flex-col justify-between shadow-sm">
+                                <div>
+                                    <div class="flex items-center justify-between mb-3">
+                                        <h5 class="font-bold text-sm text-[#5433FF]">N11 (إن 11)</h5>
+                                        <span id="status-n11" class="text-[10px] px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-800 font-semibold">غير متصل</span>
+                                    </div>
+                                    <p class="text-[11px] text-gray-500 mb-3">بيانات المصادقة لمتجر N11:</p>
+                                    <div class="space-y-2 mb-4">
+                                        <input type="text" id="api-cari-n11" placeholder="Satıcı ID / Cari ID (رقم البائع)" class="w-full border border-beige rounded-lg px-3 py-1.5 text-xs bg-cream/30">
+                                        <input type="text" id="api-key-n11" placeholder="N11 App Key" class="w-full border border-beige rounded-lg px-3 py-1.5 text-xs bg-cream/30">
+                                        <input type="password" id="api-secret-n11" placeholder="N11 App Secret" class="w-full border border-beige rounded-lg px-3 py-1.5 text-xs bg-cream/30">
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <button onclick="connectMarketplace('n11')" id="btn-connect-n11" class="w-full bg-[#5433FF] text-white py-2 rounded-lg text-xs font-bold hover:opacity-90">ربط وتفعيل N11</button>
+                                    <div id="sync-actions-n11" class="hidden space-y-1.5">
+                                        <button onclick="syncCatalog('n11')" class="w-full border border-[#5433FF] text-[#5433FF] py-1.5 rounded-lg text-xs font-bold hover:bg-blue-50">تصدير المنتجات لـ N11</button>
+                                        <button onclick="importProductsFrom('n11')" class="w-full bg-[#5433FF] text-white py-1.5 rounded-lg text-xs font-bold hover:opacity-90"><i class="fa-solid fa-download ml-1"></i> سحب المنتجات من N11</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Global Sync Action -->
+                        <div class="mt-8 pt-6 border-t border-beige flex items-center justify-between">
+                            <div class="text-xs text-gray-500">
+                                <i class="fa-solid fa-circle-info text-burgundy ml-1"></i> سحب المنتجات يربط صور الكتالوج، الأسعار، والمقاسات المتاحة تلقائياً.
+                            </div>
+                            <button onclick="syncAllMarketplaces()" class="bg-charcoal text-ivory px-6 py-2.5 rounded-xl text-xs font-bold shadow hover:bg-burgundy">
+                                مزامنة شاملة لجميع المنصات
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="bg-cream/60 p-4 border-t border-beige flex justify-end">
+                <button onclick="toggleAdminModal()" class="bg-charcoal text-ivory px-6 py-2 rounded-xl text-xs font-semibold">إغلاق لوحة الإدارة</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-6 left-6 z-50 bg-charcoal text-ivory px-6 py-3 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-32 opacity-0 transition-all duration-300">
+        <i class="fa-solid fa-circle-check text-gold text-lg"></i>
+        <span id="toast-msg" class="text-xs font-medium">تمت الإجراءات بنجاح</span>
+    </div>
+
+    <!-- JAVASCRIPT APPLICATION CODE -->
+    <script>
+        let products = [
+            {
+                id: 1,
+                title: "فستان سهرة ملكي مطرز باليد",
+                category: "فساتين سهرة",
+                price: 4200,
+                image: "https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&q=80&w=800",
+                angles: [
+                    "https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&q=80&w=800",
+                    "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=80&w=800",
+                    "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&q=80&w=800"
+                ],
+                colors: ["أسود", "عنابي", "بيج"],
+                desc: "فستان سهرة راقي مصمم بأيدي أمهر المصممين في إسطنبول مع تفاصيل مطرزة بدقة فائقة تضفي رونقاً مذهلاً."
+            },
+            {
+                id: 2,
+                title: "حقيبة جلد طبيعي فاخرة بتصميم كلاسيكي",
+                category: "الشنط الفاخرة",
+                price: 2450,
+                image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&q=80&w=800",
+                angles: [
+                    "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&q=80&w=800",
+                    "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&q=80&w=800"
+                ],
+                colors: ["جملي", "أسود", "بيج"],
+                desc: "حقيبة يد نسائية مصنوعة من الجلد الطبيعي الفاخر مع إكسسوارات ذهبية تمنحك إطلالة راقية في كل مناسبة."
+            },
+            {
+                id: 3,
+                title: "معطف صوفي كشمير فاخر",
+                category: "معاطف وجاكيتات",
+                price: 3450,
+                image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=800",
+                angles: [
+                    "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=800",
+                    "https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&q=80&w=800"
+                ],
+                colors: ["بيج", "أبيض", "رمادي داكن", "أسود"],
+                desc: "معطف شتوي وخريفي مصنوع من أجود أنواع أقمشة الكشمير الصوفي ليمنحك دفئاً مطلقاً وأناقة لا نظير لها."
+            },
+            {
+                id: 4,
+                title: "حقيبة كتف جلدية عصرية مبطنة",
+                category: "الشنط الفاخرة",
+                price: 1890,
+                image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&q=80&w=800",
+                angles: [
+                    "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&q=80&w=800"
+                ],
+                colors: ["أبيض", "أسود", "عنابي"],
+                desc: "حقيبة كتف بتصميم مبطن عصري وحزام سلسلة ذهبي فخم تتناسب مع إطلالاتك اليومية والسهرات."
+            },
+            {
+                id: 5,
+                title: "طقم كاجوال أنيق قطعتين",
+                category: "ملابس يومية عصرية",
+                price: 2100,
+                image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=800",
+                angles: [
+                    "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=800",
+                    "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=800"
+                ],
+                colors: ["وردي باهت", "كريمي", "أسود"],
+                desc: "طقم يومي عصري ومريح يناسب إطلالات العمل والجامعة والخروجات السريعة مع لمسة فخامة تركية."
+            },
+            {
+                id: 6,
+                title: "عباية راقية مطرزة بالأطراف",
+                category: "عبايات وأطقم راقية",
+                price: 2890,
+                image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&q=80&w=800",
+                angles: [
+                    "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&q=80&w=800",
+                    "https://images.unsplash.com/photo-1550614000-4895a10e1bfd?auto=format&fit=crop&q=80&w=800"
+                ],
+                colors: ["أسود", "ذهبي", "كحلي"],
+                desc: "عباية فاخرة بتصميم مودرن عصري ملائم للمناسبات الخاصة والاحتفالات الراقية."
+            }
+        ];
+
+        let cart = [];
+        let wishlist = [];
+        let currentFilter = 'الكل';
+        let currentPdpProduct = null;
+        let selectedColor = '';
+        let selectedSize = '38 (M)';
+        let currentUser = null;
+        let isAdminAuthenticated = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts(products);
+            updateCartBadge();
+            updateWishlistBadge();
+        });
+
+        function renderProducts(list) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+            
+            if(list.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-500">لا توجد منتجات مطابقة لهذا التصنيف حالياً.</div>`;
+                return;
+            }
+
+            list.forEach(p => {
+                const isWishlisted = wishlist.some(item => item.id === p.id);
+                const card = document.createElement('div');
+                card.className = 'group bg-ivory border border-beige/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between';
+                
+                const colorBadges = p.colors ? p.colors.map(c => `<span class="inline-block w-3 h-3 rounded-full border border-gray-300 mr-1" title="${c}" style="background-color: ${getColorHex(c)}"></span>`).join('') : '';
+
+                card.innerHTML = `
+                    <div class="relative overflow-hidden bg-cream h-80 cursor-pointer" onclick="openPdpModal(${p.id})">
+                        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x800/F4ECE1/2C2A29?text=TEKSTİLLA'">
+                        <div class="absolute top-3 right-3 flex flex-col gap-2">
+                            <button onclick="event.stopPropagation(); toggleWishlist(${p.id})" class="w-9 h-9 bg-ivory/90 backdrop-blur rounded-full flex items-center justify-center text-charcoal shadow hover:bg-burgundy hover:text-ivory transition">
+                                <i class="${isWishlisted ? 'fa-solid text-burgundy' : 'fa-regular'} fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="absolute bottom-3 left-3 bg-ivory/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-semibold text-charcoal">
+                            ${p.category}
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <div class="flex items-center gap-1">${colorBadges}</div>
+                                <span class="text-[11px] text-gray-500">${p.colors ? p.colors.length + ' ألوان' : ''}</span>
+                            </div>
+                            <h3 onclick="openPdpModal(${p.id})" class="font-playfair font-bold text-base text-charcoal cursor-pointer hover:text-burgundy line-clamp-1">${p.title}</h3>
+                            <p class="text-xs text-gray-500 line-clamp-2 mt-1 font-light">${p.desc}</p>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-beige/60 flex items-center justify-between">
+                            <span class="font-playfair font-bold text-burgundy text-lg">${p.price} ل.ت</span>
+                            <button onclick="quickAddToCart(${p.id})" class="bg-charcoal text-ivory text-xs px-4 py-2.5 rounded-xl font-medium hover:bg-burgundy transition shadow flex items-center gap-2">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                                <span>سريع</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function getColorHex(colorName) {
+            const map = {
+                'أسود': '#2C2A29',
+                'عنابي': '#6B2D3C',
+                'بيج': '#E3D5C6',
+                'أبيض': '#FFFFFF',
+                'رمادي داكن': '#4A4A4A',
+                'وردي باهت': '#D8B4A0',
+                'كريمي': '#F4ECE1',
+                'ذهبي': '#C5A059',
+                'وردي': '#E8A3A3',
+                'كحلي': '#1A2B3C',
+                'جملي': '#C19A6B'
+            };
+            return map[colorName] || '#D8B4A0';
+        }
+
+        function filterByCategory(cat) {
+            currentFilter = cat;
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                if(btn.textContent.trim() === cat || (cat === 'الكل' && btn.textContent.trim() === 'الكل')) {
+                    btn.className = 'category-btn px-4 py-2 rounded-full text-xs font-medium bg-burgundy text-ivory shadow';
+                } else {
+                    btn.className = 'category-btn px-4 py-2 rounded-full text-xs font-medium bg-cream text-charcoal hover:bg-beige';
+                }
+            });
+
+            if(cat === 'الكل') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category === cat);
+                renderProducts(filtered);
+            }
+
+            // Smooth scroll down to the product catalog section
+            const catalogEl = document.getElementById('shop-catalog');
+            if(catalogEl) {
+                catalogEl.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function openPdpModal(id) {
+            const product = products.find(p => p.id === id);
+            if(!product) return;
+            currentPdpProduct = product;
+            selectedColor = product.colors ? product.colors[0] : 'افتراضي';
+            selectedSize = '38 (M)';
+
+            document.getElementById('pdp-title').textContent = product.title;
+            document.getElementById('pdp-category').textContent = product.category;
+            document.getElementById('pdp-price').textContent = product.price + ' ليرة تركية';
+            document.getElementById('pdp-desc').textContent = product.desc;
+            document.getElementById('pdp-main-img').src = product.image;
+
+            const anglesContainer = document.getElementById('pdp-angles');
+            anglesContainer.innerHTML = '';
+            const imagesList = product.angles && product.angles.length > 0 ? product.angles : [product.image];
+            
+            imagesList.forEach((imgUrl, idx) => {
+                const thumb = document.createElement('img');
+                thumb.src = imgUrl;
+                thumb.className = `w-14 h-14 object-cover rounded-lg border-2 cursor-pointer ${idx === 0 ? 'border-burgundy' : 'border-beige'}`;
+                thumb.onclick = () => {
+                    document.getElementById('pdp-main-img').src = imgUrl;
+                    Array.from(anglesContainer.children).forEach(c => c.classList.remove('border-burgundy'));
+                    thumb.classList.add('border-burgundy');
+                };
+                anglesContainer.appendChild(thumb);
+            });
+
+            const colorsContainer = document.getElementById('pdp-colors');
+            colorsContainer.innerHTML = '';
+            if(product.colors) {
+                product.colors.forEach(col => {
+                    const btn = document.createElement('button');
+                    btn.className = `px-3 py-1.5 rounded-lg text-xs font-medium border ${col === selectedColor ? 'border-burgundy bg-burgundy text-ivory' : 'border-beige bg-ivory text-charcoal'}`;
+                    btn.textContent = col;
+                    btn.onclick = () => {
+                        selectedColor = col;
+                        Array.from(colorsContainer.children).forEach(b => {
+                            b.className = 'px-3 py-1.5 rounded-lg text-xs font-medium border border-beige bg-ivory text-charcoal';
+                        });
+                        btn.className = 'px-3 py-1.5 rounded-lg text-xs font-medium border border-burgundy bg-burgundy text-ivory';
+                    };
+                    colorsContainer.appendChild(btn);
+                });
+            }
+
+            document.querySelectorAll('.size-btn').forEach(b => {
+                b.className = 'size-btn px-3 py-2 border border-beige rounded-lg text-xs font-semibold hover:border-burgundy';
+                if(b.textContent.includes('38')) b.className += ' border-burgundy bg-burgundy text-ivory';
+            });
+
+            updatePdpWishlistButtonIcon();
+            document.getElementById('pdp-modal').classList.remove('hidden');
+        }
+
+        function selectSize(size) {
+            selectedSize = size;
+            document.querySelectorAll('.size-btn').forEach(b => {
+                if(b.textContent === size) {
+                    b.className = 'size-btn px-3 py-2 border border-burgundy bg-burgundy text-ivory rounded-lg text-xs font-semibold';
+                } else {
+                    b.className = 'size-btn px-3 py-2 border border-beige rounded-lg text-xs font-semibold hover:border-burgundy';
+                }
+            });
+        }
+
+        function closePdpModal() {
+            document.getElementById('pdp-modal').classList.add('hidden');
+        }
+
+        function addPdpToCart() {
+            if(!currentPdpProduct) return;
+            addToCartObject(currentPdpProduct, selectedColor, selectedSize);
+            closePdpModal();
+            toggleCartDrawer();
+        }
+
+        function quickAddToCart(id) {
+            const product = products.find(p => p.id === id);
+            if(!product) return;
+            addToCartObject(product, product.colors ? product.colors[0] : 'افتراضي', '38 (M)');
+            toggleCartDrawer();
+        }
+
+        function addToCartObject(product, color, size) {
+            const existingItem = cart.find(item => item.id === product.id && item.color === color && item.size === size);
+            if(existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    title: product.title,
+                    price: product.price,
+                    image: product.image,
+                    color: color,
+                    size: size,
+                    qty: 1
+                });
+            }
+            updateCartBadge();
+            renderCartItems();
+            showToast(`تمت إضافة "${product.title}" إلى السلة بنجاح`);
+        }
+
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('hidden');
+            renderCartItems();
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items-container');
+            container.innerHTML = '';
+
+            if(cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-16 text-gray-500">
+                        <i class="fa-solid fa-bag-shopping text-4xl mb-3 text-beige"></i>
+                        <p class="text-sm">سلة المشتريات فارغة حالياً</p>
+                    </div>
+                `;
+                document.getElementById('cart-subtotal').textContent = '0 ل.ت';
+                document.getElementById('cart-total').textContent = '0 ل.ت';
+                return;
+            }
+
+            let subtotal = 0;
+
+            cart.forEach((item, index) => {
+                subtotal += item.price * item.qty;
+                const div = document.createElement('div');
+                div.className = 'flex items-center gap-4 bg-cream/40 p-3 rounded-xl border border-beige/60';
+                div.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" class="w-16 h-20 object-cover rounded-lg">
+                    <div class="flex-grow">
+                        <h4 class="font-bold text-xs text-charcoal line-clamp-1">${item.title}</h4>
+                        <p class="text-[11px] text-gray-500 mt-0.5">اللون: ${item.color} | المقاس: ${item.size}</p>
+                        <p class="font-playfair font-bold text-burgundy text-sm mt-1">${item.price} ل.ت</p>
+                        <div class="flex items-center gap-3 mt-2">
+                            <div class="flex items-center border border-beige rounded-lg bg-ivory">
+                                <button onclick="updateCartQty(${index}, -1)" class="px-2 py-0.5 text-xs hover:bg-beige">-</button>
+                                <span class="px-3 text-xs font-bold">${item.qty}</span>
+                                <button onclick="updateCartQty(${index}, 1)" class="px-2 py-0.5 text-xs hover:bg-beige">+</button>
+                            </div>
+                            <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 text-xs"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+
+            document.getElementById('cart-subtotal').textContent = subtotal + ' ل.ت';
+            document.getElementById('cart-total').textContent = subtotal + ' ل.ت';
+        }
+
+        function updateCartQty(index, change) {
+            cart[index].qty += change;
+            if(cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartBadge();
+            renderCartItems();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartBadge();
+            renderCartItems();
+            showToast('تم حذف المنتج من السلة');
+        }
+
+        function updateCartBadge() {
+            const count = cart.reduce((sum, item) => sum + item.qty, 0);
+            const badge = document.getElementById('cart-badge');
+            badge.textContent = count;
+            if(count > 0) badge.classList.remove('hidden');
+            else badge.classList.add('hidden');
+        }
+
+        function checkout() {
+            if(cart.length === 0) {
+                showToast('سلة المشتريات فارغة');
+                return;
+            }
+            showToast('جاري تحويلك لبوابة الدفع الآمن المشفرة...');
+            setTimeout(() => {
+                cart = [];
+                updateCartBadge();
+                toggleCartDrawer();
+                showToast('تم إتمام طلبك بنجاح! رقم الشحنة: TX-' + Math.floor(10000 + Math.random() * 90000));
+            }, 2000);
+        }
+
+        function toggleWishlist(id) {
+            const product = products.find(p => p.id === id);
+            if(!product) return;
+            const idx = wishlist.findIndex(item => item.id === id);
+            if(idx > -1) {
+                wishlist.splice(idx, 1);
+                showToast('تمت إزالة المنتج من المفضلة');
+            } else {
+                wishlist.push(product);
+                showToast('تمت إضافة المنتج إلى قائمة المفضلة');
+            }
+            updateWishlistBadge();
+            renderProducts(currentFilter === 'الكل' ? products : products.filter(p => p.category === currentFilter));
+        }
+
+        function togglePdpWishlist() {
+            if(!currentPdpProduct) return;
+            toggleWishlist(currentPdpProduct.id);
+            updatePdpWishlistButtonIcon();
+        }
+
+        function updatePdpWishlistButtonIcon() {
+            if(!currentPdpProduct) return;
+            const isWishlisted = wishlist.some(item => item.id === currentPdpProduct.id);
+            const btn = document.getElementById('pdp-wishlist-btn');
+            btn.innerHTML = `<i class="${isWishlisted ? 'fa-solid text-burgundy' : 'fa-regular'} fa-heart text-lg"></i>`;
+        }
+
+        function updateWishlistBadge() {
+            const badge = document.getElementById('wishlist-badge');
+            badge.textContent = wishlist.length;
+            if(wishlist.length > 0) badge.classList.remove('hidden');
+            else badge.classList.add('hidden');
+        }
+
+        function openWishlistModal() {
+            const container = document.getElementById('wishlist-items-container');
+            container.innerHTML = '';
+            if(wishlist.length === 0) {
+                container.innerHTML = `<p class="text-center text-gray-500 py-8 text-xs">لا توجد منتجات في قائمة المفضلة حالياً.</p>`;
+            } else {
+                wishlist.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'flex items-center justify-between bg-cream/40 p-3 rounded-xl border border-beige';
+                    div.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <img src="${item.image}" class="w-12 h-14 object-cover rounded-lg">
+                            <div>
+                                <h4 class="font-bold text-xs">${item.title}</h4>
+                                <p class="text-xs text-burgundy font-playfair font-bold">${item.price} ل.ت</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="openPdpModal(${item.id}); closeWishlistModal();" class="bg-charcoal text-ivory px-3 py-1.5 rounded-lg text-xs">عرض</button>
+                            <button onclick="toggleWishlist(${item.id}); openWishlistModal();" class="text-red-500 text-xs p-1"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+            }
+            document.getElementById('wishlist-modal').classList.remove('hidden');
+        }
+
+        function closeWishlistModal() {
+            document.getElementById('wishlist-modal').classList.add('hidden');
+        }
+
+        function openSizeGuideModal(e) {
+            e.preventDefault();
+            document.getElementById('size-guide-modal').classList.remove('hidden');
+        }
+        function closeSizeGuideModal() {
+            document.getElementById('size-guide-modal').classList.add('hidden');
+        }
+
+        // Customer Auth Logic (with phone & address required)
+        function openAuthModal(mode) {
+            const modal = document.getElementById('auth-modal');
+            modal.classList.remove('hidden');
+            if(currentUser) {
+                document.getElementById('form-login').classList.add('hidden');
+                document.getElementById('form-register').classList.add('hidden');
+                document.getElementById('customer-profile-box').classList.remove('hidden');
+                document.getElementById('auth-modal-title').textContent = 'حساب الزبونة الشخصي';
+                document.getElementById('auth-modal-subtitle').textContent = 'أهلاً بك مجدداً في متجر تكستيلا';
+                document.getElementById('profile-name').textContent = currentUser.name;
+                document.getElementById('profile-email').textContent = currentUser.email;
+                document.getElementById('profile-phone-display').innerHTML = `<i class="fa-solid fa-phone ml-1"></i> الهاتف: ${currentUser.phone}`;
+                document.getElementById('profile-address-display').innerHTML = `<i class="fa-solid fa-location-dot ml-1"></i> العنوان: ${currentUser.address}`;
+                document.getElementById('profile-initials').textContent = currentUser.name.charAt(0);
+                document.getElementById('profile-points').textContent = currentUser.points || 250;
+            } else {
+                switchAuthMode(mode || 'login');
+            }
+        }
+
+        function closeAuthModal() {
+            document.getElementById('auth-modal').classList.add('hidden');
+        }
+
+        function switchAuthMode(mode) {
+            const loginForm = document.getElementById('form-login');
+            const regForm = document.getElementById('form-register');
+            const profileBox = document.getElementById('customer-profile-box');
+            const tabLogin = document.getElementById('auth-tab-login');
+            const tabReg = document.getElementById('auth-tab-register');
+
+            profileBox.classList.add('hidden');
+            if(mode === 'login') {
+                loginForm.classList.remove('hidden');
+                regForm.classList.add('hidden');
+                tabLogin.className = 'text-burgundy border-b-2 border-burgundy pb-1 font-bold';
+                tabReg.className = 'text-gray-500 hover:text-burgundy pb-1';
+                document.getElementById('auth-modal-title').textContent = 'تسجيل دخول الزبونات';
+            } else {
+                loginForm.classList.add('hidden');
+                regForm.classList.remove('hidden');
+                tabReg.className = 'text-burgundy border-b-2 border-burgundy pb-1 font-bold';
+                tabLogin.className = 'text-gray-500 hover:text-burgundy pb-1';
+                document.getElementById('auth-modal-title').textContent = 'إنشاء حساب جديد';
+            }
+        }
+
+        function handleCustomerLogin(e) {
+            e.preventDefault();
+            const identifier = document.getElementById('login-identifier').value;
+            currentUser = {
+                name: identifier.split('@')[0] || 'زبونة تكستيلا',
+                email: identifier,
+                phone: '+90 530 123 4567',
+                address: 'إسطنبول، تركيا',
+                points: 350
+            };
+            closeAuthModal();
+            showToast(`أهلاً بك مجدداً يا ${currentUser.name}! تم تسجيل دخولك بنجاح.`);
+            document.getElementById('user-account-label').textContent = currentUser.name;
+        }
+
+        function handleCustomerRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
+            const phone = document.getElementById('reg-phone').value;
+            const address = document.getElementById('reg-address').value;
+
+            currentUser = {
+                name: name,
+                email: email,
+                phone: phone,
+                address: address,
+                points: 500,
+                status: 'pending_activation'
+            };
+
+            // Simulate sending automated email to admin karla2017company@gmail.com
+            console.log(`[Email Dispatch] To: karla2017company@gmail.com | Subject: تسجيل زبونة جديدة بانتظار التفعيل - ${name}`);
+            
+            showToast(`تم إرسال إشعار التسجيل إلى إيميل المتجر (karla2017company@gmail.com) لتفعيل حسابك.`);
+            
+            setTimeout(() => {
+                // Auto-activate for smooth UX demonstration
+                currentUser.status = 'active';
+                closeAuthModal();
+                showToast(`مبارك يا ${name}! تم تفعيل حسابك بنجاح ونالك كوبون خصم 15% (TEKST15).`);
+                document.getElementById('user-account-label').textContent = name;
+            }, 1500);
+        }
+
+        function logoutCustomer() {
+            currentUser = null;
+            document.getElementById('user-account-label').textContent = 'حسابي';
+            closeAuthModal();
+            showToast('تم تسجيل الخروج من الحساب بنجاح');
+        }
+
+        // Order Tracker Modal
+        function openOrderTrackerModal() {
+            document.getElementById('order-tracker-modal').classList.remove('hidden');
+        }
+        function closeOrderTrackerModal() {
+            document.getElementById('order-tracker-modal').classList.add('hidden');
+        }
+        function trackOrderQuery() {
+            const query = document.getElementById('tracking-input').value;
+            if(!query) {
+                showToast('يرجى إدخال رقم الطلب أو البوليصة');
+                return;
+            }
+            document.getElementById('res-order-id').textContent = query;
+            document.getElementById('tracking-result-box').classList.remove('hidden');
+            showToast('تم جلب حالة الشحنة بنجاح من نظام شركات الشحن');
+        }
+
+        // Admin Security Gateway & Panel
+        function openAdminGateway() {
+            if(isAdminAuthenticated) {
+                toggleAdminModal();
+            } else {
+                document.getElementById('admin-gateway-modal').classList.remove('hidden');
+            }
+        }
+        function closeAdminGateway() {
+            document.getElementById('admin-gateway-modal').classList.add('hidden');
+        }
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('admin-user-input').value;
+            const p = document.getElementById('admin-pass-input').value;
+            if(u === 'admin' && p === '2026') {
+                isAdminAuthenticated = true;
+                closeAdminGateway();
+                toggleAdminModal();
+                showToast('تم تسجيل دخول لوحة الإدارة بنجاح!');
+            } else {
+                showToast('اسم المستخدم أو كلمة مرور الإدارة غير صحيحة (استخدم: admin / 2026)');
+            }
+        }
+
+        function toggleAdminModal() {
+            const modal = document.getElementById('admin-modal');
+            modal.classList.toggle('hidden');
+            if(!modal.classList.contains('hidden')) {
+                renderAdminInventory();
+            }
+        }
+
+        function handleAddNewProduct(e) {
+            e.preventDefault();
+            const title = document.getElementById('new-title').value;
+            const category = document.getElementById('new-category').value;
+            const price = parseFloat(document.getElementById('new-price').value);
+            const colorsStr = document.getElementById('new-colors').value;
+            const desc = document.getElementById('new-desc').value;
+            const imageFile = document.getElementById('new-image-file').files[0];
+
+            const colorsArray = colorsStr.split(',').map(c => c.trim()).filter(c => c.length > 0);
+
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = function(uploadEvent) {
+                    const base64Image = uploadEvent.target.result;
+                    saveNewProductRecord(title, category, price, base64Image, colorsArray, desc);
+                };
+                reader.readAsDataURL(imageFile);
+            } else {
+                const defaultImg = "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=800";
+                saveNewProductRecord(title, category, price, defaultImg, colorsArray, desc);
+            }
+        }
+
+        function saveNewProductRecord(title, category, price, imageUrl, colorsArray, desc) {
+            const newProd = {
+                id: Date.now(),
+                title,
+                category,
+                price,
+                image: imageUrl,
+                angles: [imageUrl],
+                colors: colorsArray.length > 0 ? colorsArray : ["أسود", "بيج"],
+                desc
+            };
+
+            products.unshift(newProd);
+            renderProducts(currentFilter === 'الكل' ? products : products.filter(p => p.category === currentFilter));
+            renderAdminInventory();
+            document.getElementById('add-product-form').reset();
+            showToast('تمت إضافة المنتج بنجاح إلى قاعدة البيانات');
+        }
+
+        function renderAdminInventory() {
+            const tbody = document.getElementById('admin-inventory-list');
+            tbody.innerHTML = '';
+
+            products.forEach((p) => {
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-beige hover:bg-cream/40';
+                tr.innerHTML = `
+                    <td class="p-2"><img src="${p.image}" class="w-10 h-12 object-cover rounded"></td>
+                    <td class="p-2 font-bold">${p.title}</td>
+                    <td class="p-2">${p.category}</td>
+                    <td class="p-2 font-playfair font-bold text-burgundy">${p.price} ل.ت</td>
+                    <td class="p-2">${p.colors ? p.colors.join(', ') : ''}</td>
+                    <td class="p-2 text-center">
+                        <button onclick="deleteProduct(${p.id})" class="bg-red-500 text-ivory px-3 py-1 rounded text-xs hover:bg-red-600"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function deleteProduct(id) {
+            products = products.filter(p => p.id !== id);
+            renderProducts(currentFilter === 'الكل' ? products : products.filter(p => p.category === currentFilter));
+            renderAdminInventory();
+            showToast('تم حذف المنتج بنجاح');
+        }
+
+        function switchTab(tab) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            filterByCategory('الكل');
+        }
+
+        // Admin Tabs Switcher
+        function switchAdminTab(tabName) {
+            const invTab = document.getElementById('admin-tab-inv');
+            const mktTab = document.getElementById('admin-tab-mkt');
+            const invSec = document.getElementById('admin-section-inventory');
+            const mktSec = document.getElementById('admin-section-marketplaces');
+
+            if(tabName === 'inventory') {
+                invTab.className = 'pb-3 border-b-2 border-burgundy text-burgundy font-bold';
+                mktTab.className = 'pb-3 text-gray-500 hover:text-burgundy';
+                invSec.classList.remove('hidden');
+                mktSec.classList.add('hidden');
+            } else {
+                mktTab.className = 'pb-3 border-b-2 border-burgundy text-burgundy font-bold';
+                invTab.className = 'pb-3 text-gray-500 hover:text-burgundy';
+                mktSec.classList.remove('hidden');
+                invSec.classList.add('hidden');
+            }
+        }
+
+        // Marketplace Connection Simulator (Trendyol, Hepsiburada, N11)
+        function connectMarketplace(platform) {
+            const cariId = document.getElementById(`api-cari-${platform}`).value;
+            if(platform === 'trendyol') {
+                const supplierId = document.getElementById('api-supplier-trendyol').value;
+                const apiKey = document.getElementById('api-key-trendyol').value;
+                const apiSecret = document.getElementById('api-secret-trendyol').value;
+                
+                if(!cariId || !supplierId || !apiKey || !apiSecret) {
+                    showToast('يرجى إدخال رقم البائع (Cari ID)، و Supplier ID، و API Key، و API Secret الخاصة بـ ترينديول');
+                    return;
+                }
+            } else {
+                const keyInput = document.getElementById(`api-key-${platform}`).value;
+                const secretInput = document.getElementById(`api-secret-${platform}`).value;
+                if(!cariId || !keyInput || !secretInput) {
+                    showToast(`يرجى إدخال رقم البائع (Cari ID) ومفاتيح الربط الخاصة بـ ${platform.toUpperCase()}`);
+                    return;
+                }
+            }
+
+            showToast(`جاري الاتصال بـ ${platform.toUpperCase()} عبر رقم البائع (${cariId}) وتوثيق بيانات المصادقة...`);
+            setTimeout(() => {
+                const badge = document.getElementById(`status-${platform}`);
+                badge.textContent = 'متصل بنجاح';
+                badge.className = 'text-[10px] px-2 py-0.5 rounded-full bg-green-100 text-green-800 font-semibold';
+                
+                document.getElementById(`btn-connect-${platform}`).classList.add('hidden');
+                document.getElementById(`sync-actions-${platform}`).classList.remove('hidden');
+                
+                showToast(`تم ربط متجر تكستيلا مع ${platform.toUpperCase()} بنجاح وتم تفعيل الـ API!`);
+            }, 1200);
+        }
+
+        function syncCatalog(platform) {
+            showToast(`جاري تصدير ومزامنة ${products.length} منتج مع بوابة ${platform.toUpperCase()}...`);
+            setTimeout(() => {
+                showToast(`تمت مزامنة المخزون والأسعار بنجاح مع ${platform.toUpperCase()}`);
+            }, 1500);
+        }
+
+        function importProductsFrom(platform) {
+            const cariId = document.getElementById(`api-cari-${platform}`).value || 'CARI-99281';
+            showToast(`جاري الاتصال بـ ${platform.toUpperCase()} API (رقم البائع: ${cariId}) وسحب منتجات البائع...`);
+            
+            setTimeout(() => {
+                const platformProducts = [
+                    {
+                        id: Date.now() + Math.floor(Math.random() * 1000),
+                        title: `فستان سهرة تركي فاخر (${platform.toUpperCase()})`,
+                        category: "فساتين سهرة",
+                        price: 4300,
+                        image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=80&w=800",
+                        angles: ["https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=80&w=800"],
+                        colors: ["أسود", "ذهبي"],
+                        desc: `تم سحب هذا المنتج تلقائياً من متجرك في ${platform.toUpperCase()} عبر واجهة البرمجة الرسمية.`
+                    },
+                    {
+                        id: Date.now() + Math.floor(Math.random() * 2000),
+                        title: `حقيبة يد جلدية كلاسيكية (${platform.toUpperCase()})`,
+                        category: "الشنط الفاخرة",
+                        price: 2250,
+                        image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&q=80&w=800",
+                        angles: ["https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&q=80&w=800"],
+                        colors: ["جملي", "أسود"],
+                        desc: `حقيبة نسائية فاخرة مسحوبة من مخزون ${platform.toUpperCase()} مع المزامنة اللحظية.`
+                    },
+                    {
+                        id: Date.now() + Math.floor(Math.random() * 3000),
+                        title: `معطف صوفي كشمير فاخر (${platform.toUpperCase()})`,
+                        category: "معاطف وجاكيتات",
+                        price: 3800,
+                        image: "https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&q=80&w=800",
+                        angles: ["https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&q=80&w=800"],
+                        colors: ["بيج", "رمادي"],
+                        desc: `معطف شتوي تم استيراده من حساب البائع في ${platform.toUpperCase()} بنجاح.`
+                    }
+                ];
+
+                products.unshift(...platformProducts);
+                renderProducts(currentFilter === 'الكل' ? products : products.filter(p => p.category === currentFilter));
+                renderAdminInventory();
+                showToast(`تم بنجاح سحب ${platformProducts.length} منتجات وإضافتها لمتجر تكستيلا من ${platform.toUpperCase()}!`);
+            }, 1800);
+        }
+
+        function syncAllMarketplaces() {
+            showToast(`جاري إجراء مزامنة شاملة لجميع المنصات (Trendyol, Hepsiburada, N11)...`);
+            setTimeout(() => {
+                showToast(`اكتملت المزامنة الشاملة لجميع المنصات التركية بنجاح بنسبة 100%!`);
+            }, 2000);
+        }
+
+        let toastTimeoutId = null;
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = msg;
+            toast.classList.remove('translate-y-32', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            
+            if(toastTimeoutId) clearTimeout(toastTimeoutId);
+            toastTimeoutId = setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-32', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
