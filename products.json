@@ -1,30 +1,10 @@
 [
   {
-   [
-  {
     "id": 1054793335,
-    "title": "TEKSTİLLA Kadın Triko Takım 3 Parça Kazak ve Geniş Paça Pantolon Kışlık Rahat Ev ve Günlük Kombin",
-    "price": 600 , 
-    "currency": "TL",
-    "category": "Triko Takım",
-    "trendyol_url": "https://www.trendyol.com/tekstilla/kadin-triko-takim-3-parca-kazak-ve-genis-paca-pantolon-kislik-rahat-ev-ve-gunluk-kombin-p-1054793335?boutiqueId=61&merchantId=741732"
-  }
-]
-  },
-  {
-    "id": 2,
-    "title": "طقم قطعتين كاجوال عصري",
-    "price": 380,
+    "title": "TEKSTİLLA Kadın Triko Takım 3 Parça Kazak ve Geniş Paça Pantolon",
+    "price": 450,
     "currency": "TL",
     "image": "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500",
     "category": "Takım"
-  },
-  {
-    "id": 3,
-    "title": "جاكيت شتوي نسائي فاخر",
-    "price": 650,
-    "currency": "TL",
-    "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500",
-    "category": "Mont"
   }
 ]
