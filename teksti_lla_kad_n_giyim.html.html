@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEKSTİLLA | تكستيلا - منصة الأزياء التركية متعددة التجار</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ivory: '#FDFBF7',
+                        cream: '#F4ECE1',
+                        beige: '#E3D5C6',
+                        dustyrose: '#D8B4A0',
+                        burgundy: '#6B2D3C',
+                        charcoal: '#2C2A29',
+                        gold: '#C5A059'
+                    },
+                    fontFamily: {
+                        playfair: ['"Playfair Display"', 'Cairo', 'serif'],
+                        sans: ['Cairo', 'Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #FDFBF7; }
+        ::-webkit-scrollbar-thumb { background: #E3D5C6; border-radius: 3px; }
+        .luxury-gradient { background: linear-gradient(135deg, #6B2D3C 0%, #4A1E29 100%); }
+        .gold-shimmer { background: linear-gradient(90deg, #C5A059 0%, #DFC286 50%, #C5A059 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        * { transition-property: color, background-color, border-color, transform, opacity; transition-duration: 200ms; transition-timing-function: ease-in-out; }
+    </style>
+</head>
+<body class="bg-ivory text-charcoal font-sans antialiased selection:bg-burgundy selection:text-ivory">
+
+    <!-- TOP ANNOUNCEMENT & MULTI-LAYER ROLE SWITCHER BAR -->
+    <div class="bg-charcoal text-ivory text-xs py-2 px-4 text-center font-light tracking-widest flex flex-col sm:flex-row justify-between items-center gap-2">
+        <div class="hidden md:block">منصة تكستيلا الاحترافية متعددة التجار (Multi-Vendor Platform)</div>
+        <div>شحن مجاني للطلبات فوق 1500 ليرة تركية | إسطنبول، تركيا</div>
+        <div class="flex items-center gap-3">
+            <span onclick="openPortalModal('customer')" class="cursor-pointer hover:text-gold font-semibold"><i class="fa-solid fa-user ml-1"></i> حساب الزبونة</span>
+            <span class="text-beige/40">|</span>
+            <span onclick="openPortalModal('vendor')" class="cursor-pointer text-dustyrose hover:underline font-semibold"><i class="fa-solid fa-store ml-1"></i> بوابة التجار</span>
+            <span class="text-beige/40">|</span>
+            <span onclick="openPortalModal('admin')" class="cursor-pointer text-gold hover:underline font-semibold"><i class="fa-solid fa-shield-halved ml-1"></i> الإدارة العليا</span>
+        </div>
+    </div>
+
+    <!-- HEADER & NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-ivory/90 backdrop-blur-md border-b border-beige shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <button class="md:hidden text-charcoal focus:outline-none text-xl p-2"><i class="fa-solid fa-bars"></i></button>
+
+            <!-- Brand Logo -->
+            <div class="flex flex-col items-center cursor-pointer" onclick="filterByCategory('الكل')">
+                <h1 class="text-2xl sm:text-3xl font-playfair font-bold tracking-wider text-charcoal">TEKSTİLLA</h1>
+                <span class="text-[10px] tracking-[0.3em] uppercase text-burgundy font-semibold">تكستيلا | متعدد التجار</span>
+            </div>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-6 space-x-reverse text-sm font-medium tracking-wide">
+                <a href="#shop-catalog" onclick="filterByCategory('الكل')" class="hover:text-burgundy text-burgundy font-semibold border-b-2 border-burgundy pb-1">الرئيسية</a>
+                <a href="#shop-catalog" onclick="filterByCategory('فساتين سهرة')" class="hover:text-burgundy">فساتين السهرة</a>
+                <a href="#shop-catalog" onclick="filterByCategory('معاطف وجاكيتات')" class="hover:text-burgundy">الملابس الخارجية</a>
+                <a href="#shop-catalog" onclick="filterByCategory('الشنط الفاخرة')" class="hover:text-burgundy">الشنط الفاخرة</a>
+                <a href="#shop-catalog" onclick="filterByCategory('ملابس يومية عصرية')" class="hover:text-burgundy">الأزياء اليومية</a>
+                <a href="#" onclick="openShippingTrackerModal(event)" class="hover:text-burgundy text-burgundy font-bold"><i class="fa-solid fa-truck-fast ml-1"></i>تتبع الشحن</a>
+                <a href="#" onclick="openSizeGuideModal(event)" class="hover:text-burgundy text-gold font-semibold"><i class="fa-solid fa-ruler ml-1"></i>دليل المقاسات</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <button onclick="openShippingTrackerModal(event)" class="hidden lg:flex items-center gap-1 text-xs font-semibold text-charcoal hover:text-burgundy bg-cream/60 px-3 py-1.5 rounded-lg border border-beige">
+                    <i class="fa-solid fa-truck-fast text-burgundy"></i> تتبع شحنتك
+                </button>
+                <button onclick="openPortalModal('customer')" class="relative p-2 text-charcoal hover:text-burgundy flex items-center gap-1 text-xs font-semibold">
+                    <i class="fa-regular fa-user text-lg"></i>
+                    <span id="nav-customer-name" class="hidden sm:inline">حسابي</span>
+                </button>
+                <button onclick="openWishlistModal()" class="relative p-2 text-charcoal hover:text-burgundy">
+                    <i class="fa-regular fa-heart text-xl"></i>
+                    <span id="wishlist-badge" class="absolute top-0 right-0 bg-burgundy text-ivory rounded-full text-[10px] w-4 h-4 flex items-center justify-center font-bold hidden">0</span>
+                </button>
+                <button onclick="toggleCartDrawer()" class="relative p-2 text-charcoal hover:text-burgundy">
+                    <i class="fa-solid fa-bag-shopping text-xl"></i>
+                    <span id="cart-badge" class="absolute top-0 right-0 bg-burgundy text-ivory rounded-full text-[10px] w-4 h-4 flex items-center justify-center font-bold">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN APP CONTENT -->
+    <main id="main-content">
+        <!-- HERO SECTION -->
+        <section class="relative bg-cream overflow-hidden py-16 lg:py-24 border-b border-beige">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 space-y-6 text-right">
+                        <span class="inline-block bg-beige text-charcoal text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest">منصة الموضة التركية المتكاملة</span>
+                        <h1 class="text-4xl sm:text-6xl font-playfair font-bold text-charcoal leading-tight">
+                            أرقى الأزياء والشنط التركية <br><span class="text-burgundy italic">من أشهر التجار والمصممين</span>
+                        </h1>
+                        <p class="text-gray-600 text-base sm:text-lg max-w-xl font-light leading-relaxed">
+                            تتيح منصة تكستيلا لعشرات التجار المعتمدين عرض أحدث تصاميم الفساتين والشنط والمعاطف بضمان الجودة والشحن السريع لكافة المدن.
+                        </p>
+                        <div class="flex flex-wrap gap-4 pt-4">
+                            <a href="#shop-catalog" class="luxury-gradient text-ivory font-medium px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition flex items-center gap-2">
+                                <span>تصفح المنتجات والمعروضات</span>
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                            <button onclick="openPortalModal('vendor')" class="bg-ivory border-2 border-burgundy text-burgundy font-medium px-6 py-4 rounded-xl hover:bg-burgundy hover:text-ivory transition">
+                                سجل كتاجر جديد وعرض بضاعتك
+                            </button>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative mx-auto w-72 sm:w-96 h-[450px] sm:h-[520px] rounded-2xl overflow-hidden shadow-2xl border-4 border-ivory">
+                            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=800" alt="أزياء نسائية" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATALOG SECTION -->
+        <section id="shop-catalog" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 border-b border-beige pb-6">
+                <div>
+                    <span class="text-burgundy uppercase text-xs font-bold tracking-widest">سوق التجار والمصممين</span>
+                    <h2 class="text-3xl font-playfair font-bold text-charcoal mt-1">كافة منتجات منصة تكستيلا</h2>
+                </div>
+                <!-- Categories Filter Tabs -->
+                <div class="flex flex-wrap gap-2 mt-4 md:mt-0" id="category-filters">
+                    <button onclick="filterByCategory('الكل')" class="category-btn px-4 py-2 rounded-full text-xs font-medium bg-burgundy text-ivory shadow">الكل</button>
+                    <button onclick="filterByCategory('فساتين سهرة')" class="category-btn px-4 py-2 rounded-full text-xs font-medium bg-cream text-charcoal hover:bg-beige">فساتين سهرة</button>
+                    <button onclick="filterByCategory('معاطف وجاكيتات')" class="category-btn px-4 py-2 rounded-full text-xs font-medium bg-cream text-charcoal hover:bg-beige">معاطف وجاكيتات</button>
+                    <button onclick="filterByCategory('الشنط الفاخرة')" class="category-btn px-4 py-2 rounded-full text-xs font-medium bg-cream text-charcoal hover:bg-beige">الشنط الفاخرة</button>
+                    <button onclick="filterByCategory('ملابس يومية عصرية')" class="category-btn px-4 py-2 rounded-full text-xs font-medium bg-cream text-charcoal hover:bg-beige">ملابس يومية عصرية</button>
+                </div>
+            </div>
+
+            <!-- PRODUCT GRID -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"></div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-charcoal text-ivory pt-16 pb-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <div class="space-y-4">
+                <h3 class="text-2xl font-playfair font-bold tracking-wider">TEKSTİLLA</h3>
+                <p class="text-xs text-gray-400 leading-relaxed">منصة إلكترونية احترافية متعددة الطبقات والتجار لإدارة وعرض أجود الأزياء النسائية الفاخرة.</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-sm tracking-widest text-gold mb-4 uppercase">طبقات المنصة</h4>
+                <ul class="space-y-2 text-xs text-gray-300">
+                    <li><a href="#" onclick="openPortalModal('customer')" class="hover:text-ivory">واجهة الزبائن والعملاء</a></li>
+                    <li><a href="#" onclick="openPortalModal('vendor')" class="hover:text-ivory">بوابة التجار والبائعين</a></li>
+                    <li><a href="#" onclick="openPortalModal('admin')" class="hover:text-ivory">لوحة الإدارة العليا (Super Admin)</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-sm tracking-widest text-gold mb-4 uppercase">دعم التجار</h4>
+                <ul class="space-y-2 text-xs text-gray-300">
+                    <li><a href="#" onclick="openPortalModal('vendor')" class="hover:text-ivory">انضم كتاجر معتمد</a></li>
+                    <li><a href="#" class="hover:text-ivory">شروط وعمولات المنصة</a></li>
+                    <li><a href="#" class="hover:text-ivory">دليل ربط الـ API والمنتجات</a></li>
+                </ul>
+            </div>
+            <div class="space-y-4">
+                <h4 class="font-bold text-sm tracking-widest text-gold mb-4 uppercase">إيميل المتجر الرسمي</h4>
+                <p class="text-xs text-gray-400">للتواصل وإشعارات التسجيل والتفعيل المباشر:</p>
+                <p class="text-xs font-bold text-gold font-mono">karla2017company@gmail.com</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 border-t border-gray-800 pt-6 text-center text-xs text-gray-500">
+            &copy; 2026 TEKSTİLLA Multi-Vendor Platform. جميع الحقوق محفوظة.
+        </div>
+    </footer>
+
+    <!-- SHOPPING CART DRAWER -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden transition-opacity flex justify-end">
+        <div class="w-full max-w-md bg-ivory h-full shadow-2xl flex flex-col justify-between">
+            <div class="p-6 border-b border-beige flex justify-between items-center bg-cream/50">
+                <div class="flex items-center gap-2"><i class="fa-solid fa-bag-shopping text-burgundy"></i><h3 class="font-playfair font-bold text-lg">سلة المشتريات</h3></div>
+                <button onclick="toggleCartDrawer()" class="p-2 text-xl hover:text-burgundy"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="cart-items-container" class="p-6 overflow-y-auto flex-grow space-y-4"></div>
+            <div class="p-6 border-t border-beige bg-cream/30 space-y-4">
+                <div class="flex justify-between items-center text-sm"><span class="text-gray-600">المجموع الفرعي:</span><span id="cart-subtotal" class="font-bold text-lg font-playfair">0 ل.ت</span></div>
+                <button onclick="checkout()" class="w-full luxury-gradient text-ivory py-3 rounded-xl font-medium shadow hover:opacity-95 text-center block">إتمام الشراء والدفع الآمن</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCT DETAIL VIEW MODAL -->
+    <div id="pdp-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-ivory w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col md:flex-row relative">
+            <button onclick="closePdpModal()" class="absolute top-4 left-4 z-10 bg-ivory/80 rounded-full p-2 w-10 h-10 flex items-center justify-center shadow hover:bg-burgundy hover:text-ivory transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <div class="w-full md:w-1/2 bg-cream p-6 flex flex-col justify-between">
+                <div class="relative h-80 sm:h-96 rounded-xl overflow-hidden shadow-md bg-white">
+                    <img id="pdp-main-img" src="" alt="صورة" class="w-full h-full object-cover">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto">
+                <div class="space-y-4">
+                    <span id="pdp-category" class="bg-beige text-charcoal text-[11px] font-bold px-3 py-1 rounded-full uppercase"></span>
+                    <h2 id="pdp-title" class="text-2xl font-playfair font-bold text-charcoal"></h2>
+                    <p id="pdp-price" class="text-xl font-playfair font-bold text-burgundy"></p>
+                    <p id="pdp-desc" class="text-xs text-gray-600 leading-relaxed"></p>
+                    <p id="pdp-vendor" class="text-xs text-gold font-bold">التاجر البائع: تكستيلا الأساسي</p>
+                    <div><label class="block text-xs font-bold text-charcoal mb-2">اختر اللون:</label><div id="pdp-colors" class="flex gap-2"></div></div>
+                </div>
+                <div class="pt-6 mt-6 border-t border-beige flex gap-3">
+                    <button onclick="addPdpToCart()" class="flex-grow luxury-gradient text-ivory py-3 rounded-xl font-medium shadow text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-bag-shopping"></i><span>إضافة إلى السلة</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SIZE GUIDE MODAL -->
+    <div id="size-guide-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-ivory w-full max-w-lg rounded-2xl shadow-2xl p-6 relative">
+            <button onclick="closeSizeGuideModal()" class="absolute top-4 left-4 text-xl p-2"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="font-playfair text-xl font-bold mb-4 text-center">دليل المقاسات القياسي</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-xs text-center border-collapse border border-beige">
+                    <thead><tr class="bg-cream text-charcoal"><th class="border border-beige p-2">المقاس</th><th class="border border-beige p-2">الصدر (cm)</th><th class="border border-beige p-2">الخصر (cm)</th></tr></thead>
+                    <tbody>
+                        <tr><td class="border border-beige p-2 font-bold">36 (S)</td><td class="border border-beige p-2">84-88</td><td class="border border-beige p-2">66-70</td></tr>
+                        <tr class="bg-cream/40"><td class="border border-beige p-2 font-bold">38 (M)</td><td class="border border-beige p-2">88-92</td><td class="border border-beige p-2">70-74</td></tr>
+                        <tr><td class="border border-beige p-2 font-bold">40 (L)</td><td class="border border-beige p-2">92-96</td><td class="border border-beige p-2">74-78</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-6 text-center"><button onclick="closeSizeGuideModal()" class="bg-charcoal text-ivory px-6 py-2 rounded-xl text-xs">إغلاق</button></div>
+        </div>
+    </div>
+
+    <!-- WISHLIST MODAL -->
+    <div id="wishlist-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-ivory w-full max-w-lg rounded-2xl shadow-2xl p-6 relative max-h-[80vh] flex flex-col">
+            <button onclick="closeWishlistModal()" class="absolute top-4 left-4 text-xl p-2"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="font-playfair text-xl font-bold mb-4 flex items-center gap-2"><i class="fa-solid fa-heart text-burgundy"></i> المفضلة</h3>
+            <div id="wishlist-items-container" class="overflow-y-auto flex-grow space-y-3 py-2"></div>
+        </div>
+    </div>
+
+    <!-- SHIPPING & ORDER TRACKING MODAL (For Customers & Admin) -->
+    <div id="shipping-tracker-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-ivory w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden relative max-h-[90vh] flex flex-col">
+            <button onclick="closeShippingTrackerModal()" class="absolute top-4 left-4 text-xl p-2 z-10"><i class="fa-solid fa-xmark"></i></button>
+            <div class="bg-burgundy text-ivory p-6 text-center">
+                <h3 class="font-playfair text-xl font-bold"><i class="fa-solid fa-truck-fast ml-2"></i> تتبع الطلبات والشحنات التركية</h3>
+                <p class="text-xs text-cream/80 mt-1">تابع بوليصة شحن طلبك وحالة التوصيل لحظة بلحظة</p>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-6">
+                <div class="bg-cream/50 p-4 rounded-xl border border-beige space-y-3">
+                    <h4 class="font-bold text-xs text-charcoal">البحث برقم البوليصة أو رقم الطلب:</h4>
+                    <div class="flex gap-2">
+                        <input type="text" id="track-input-code" placeholder="مثال: TR-9823410" class="flex-grow border border-beige rounded-lg px-3 py-2 text-xs bg-white">
+                        <button onclick="searchShipmentCode()" class="luxury-gradient text-ivory px-5 py-2 rounded-lg text-xs font-bold">بحث</button>
+                    </div>
+                </div>
+                <div id="shipment-result-box" class="space-y-4">
+                    <h4 class="font-bold text-xs text-charcoal">شحناتك النشطة الحالية:</h4>
+                    <div class="space-y-3" id="active-shipments-list">
+                        <!-- Sample Active Shipment -->
+                        <div class="bg-white p-4 rounded-xl border border-beige shadow-sm space-y-3">
+                            <div class="flex justify-between items-center text-xs border-b border-cream pb-2">
+                                <span class="font-bold text-burgundy">رقم الطلب: #TEKS-2026-89</span>
+                                <span class="bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full font-bold text-[10px]">في التوزيع، سيصل خلال اليوم</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] text-gray-600">
+                                <div><span class="block text-gray-400">شركة الشحن:</span> <b>Aras Kargo</b></div>
+                                <div><span class="block text-gray-400">رقم البوليصة:</span> <b class="font-mono text-charcoal">TR-5541298</b></div>
+                                <div><span class="block text-gray-400">تاريخ الشحن:</span> 12 تشرين الثاني</div>
+                                <div><span class="block text-gray-400">التسليم المتوقع:</span> <b class="text-burgundy">اليوم قبل 18:00</b></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LAYER 1: CUSTOMER PORTAL MODAL -->
+    <div id="customer-portal-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-ivory w-full max-w-md rounded-2xl shadow-2xl overflow-hidden relative">
+            <button onclick="closePortalModal('customer')" class="absolute top-4 left-4 text-xl p-2 z-10"><i class="fa-solid fa-xmark"></i></button>
+            <div class="bg-burgundy text-ivory p-6 text-center">
+                <h3 class="font-playfair text-xl font-bold">طبقة الزبائن - تسجيل ودخول</h3>
+                <p class="text-xs text-cream/80 mt-1">احصلي على كوبون خصم 15% وتتبعي شحناتك</p>
+            </div>
+            <div class="p-6 space-y-4">
+                <div class="flex border-b border-beige pb-2 text-xs font-bold justify-center gap-6">
+                    <button onclick="switchCustMode('login')" id="c-tab-l" class="text-burgundy border-b-2 border-burgundy pb-1">تسجيل الدخول</button>
+                    <button onclick="switchCustMode('register')" id="c-tab-r" class="text-gray-500 pb-1">حساب جديد</button>
+                </div>
+                <form id="form-cust-login" onsubmit="handleCustomerLogin(event)" class="space-y-4">
+                    <div><label class="block text-xs font-semibold mb-1">البريد الإلكتروني أو الهاتف</label><input type="text" id="cl-user" required class="w-full bg-cream/30 border border-beige rounded-lg px-3 py-2 text-xs"></div>
+                    <div><label class="block text-xs font-semibold mb-1">كلمة المرور</label><input type="password" id="cl-pass" required class="w-full bg-cream/30 border border-beige rounded-lg px-3 py-2 text-xs"></div>
+                    <button type="submit" class="w-full luxury-gradient text-white py-3 rounded-xl text-xs font-bold shadow">دخول للزبونة</button>
+                </form>
+                <form id="form-cust-reg" onsubmit="handleCustomerRegister(event)" class="space-y-3 hidden">
+                    <div><label class="block text-xs font-semibold mb-1">الاسم الكامل</label><input type="text" id="cr-name" required class="w-full bg-cream/30 border border-beige rounded-lg px-3 py-2 text-xs" placeholder="فاطمة الزهراء"></div>
+                    <div><label class="block text-xs font-semibold mb-1">البريد الإلكتروني</label><input type="email" id="cr-email" required class="w-full bg-cream/30 border border-beige rounded-lg px-3 py-2 text-xs" placeholder="fatima@example.com"></div>
+                    <div><label class="block text-xs font-semibold mb-1">رقم الهاتف (مطلوب للشحن)*</label><input type="tel" id="cr-phone" required class="w-full bg-cream/30 border border-beige rounded-lg px-3 py-2 text-xs" placeholder="+90 530 000 0000"></div>
+                    <div><label class="block text-xs font-semibold mb-1">عنوان التوصيل التفصيلي*</label><textarea id="cr-address" required rows="2" class="w-full bg-cream/30 border border-beige rounded-lg px-3 py-2 text-xs" placeholder="إسطنبول، الفاتح..."></textarea></div>
+                    <div><label class="block text-xs font-semibold mb-1">كلمة المرور</label><input type="password" id="cr-pass" required class="w-full bg-cream/30 border border-beige rounded-lg px-3 py-2 text-xs"></div>
+                    <div class="bg-cream p-2.5 rounded-lg text-[10px] text-burgundy font-medium">
+                        <i class="fa-solid fa-envelope text-gold ml-1"></i> يتم إرسال طلب التسجيل وتفاصيلك إلى إيميل المتجر: <b>karla2017company@gmail.com</b>
+                    </div>
+                    <button type="submit" class="w-full luxury-gradient text-white py-3 rounded-xl text-xs font-bold shadow">إنشاء الحساب وإرسال الإشعار</button>
+                </form>
+                <div id="cust-profile-box" class="hidden space-y-3 text-center">
+                    <div class="bg-cream p-4 rounded-xl border border-beige space-y-1">
+                        <h4 class="font-bold text-sm text-charcoal" id="cp-name">--</h4>
+                        <p class="text-xs text-gray-500" id="cp-email">--</p>
+                        <p class="text-[11px] text-gray-600" id="cp-phone">--</p>
+                        <p class="text-[11px] text-gray-600" id="cp-address">--</p>
+                        <span class="inline-block bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded-full font-bold mt-1">حساب مفعل من الإدارة</span>
+                    </div>
+                    <button onclick="logoutCustomer()" class="w-full bg-red-50 text-red-600 border border-red-200 py-2 rounded-xl text-xs font-bold">تسجيل الخروج</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LAYER 2: VENDOR PORTAL MODAL -->
+    <div id="vendor-portal-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-ivory w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
+            <div class="bg-charcoal text-ivory p-6 flex justify-between items-center border-b border-gold/30">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-store text-dustyrose text-xl"></i>
+                    <div>
+                        <h3 class="font-playfair text-xl font-bold">بوابة التجار والبائعين (Vendor Portal)</h3>
+                        <p class="text-[11px] text-gray-400">إدارة منتجاتك، مخزونك، ومتابعة مبيعاتك في منصة تكستيلا</p>
+                    </div>
+                </div>
+                <button onclick="closePortalModal('vendor')" class="text-ivory hover:text-gold text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div id="vendor-login-view" class="p-8 max-w-md mx-auto w-full space-y-4">
+                <div class="text-center mb-4">
+                    <h4 class="font-bold text-base text-charcoal">تسجيل دخول التجار</h4>
+                    <p class="text-xs text-gray-500">للتجربة، أدخل أي اسم تاجر ورمز الدخول <code class="bg-cream px-1 py-0.5 rounded font-bold">1234</code></p>
+                </div>
+                <form onsubmit="handleVendorLogin(event)" class="space-y-4">
+                    <div><label class="block text-xs font-semibold mb-1">اسم المتجر / التاجر</label><input type="text" id="v-name" required class="w-full border border-beige rounded-lg px-3 py-2 text-xs" placeholder="متجر إسطنبول للأزياء"></div>
+                    <div><label class="block text-xs font-semibold mb-1">كلمة المرور (PIN)</label><input type="password" id="v-pass" required class="w-full border border-beige rounded-lg px-3 py-2 text-xs" placeholder="1234"></div>
+                    <button type="submit" class="w-full bg-burgundy text-ivory py-3 rounded-xl text-xs font-bold shadow">دخول لوحة التاجر</button>
+                </form>
+            </div>
+
+            <div id="vendor-dashboard-view" class="p-6 overflow-y-auto flex-grow space-y-6 hidden">
+                <div class="bg-cream/50 p-4 rounded-xl border border-beige flex justify-between items-center">
+                    <div>
+                        <p class="text-xs text-gray-500">أهلاً بك، التاجر المعتمد:</p>
+                        <h4 class="font-bold text-base text-burgundy" id="lbl-vendor-store">متجر إسطنبول</h4>
+                    </div>
+                    <button onclick="logoutVendor()" class="bg-ivory border border-beige px-4 py-2 rounded-lg text-xs font-semibold text-red-600">تسجيل الخروج</button>
+                </div>
+
+                <div class="bg-ivory p-6 rounded-xl border border-beige shadow-sm">
+                    <h4 class="font-bold text-sm mb-4 text-charcoal"><i class="fa-solid fa-plus-circle text-burgundy ml-1"></i> إضافة منتج جديد إلى متجرك</h4>
+                    <form onsubmit="handleVendorAddProduct(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div><label class="block text-xs font-semibold mb-1">اسم المنتج</label><input type="text" id="vp-title" required class="w-full border border-beige rounded-lg px-3 py-2 text-xs" placeholder="فستان مخملي..."></div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">التصنيف</label>
+                            <select id="vp-category" class="w-full border border-beige rounded-lg px-3 py-2 text-xs">
+                                <option value="فساتين سهرة">فساتين سهرة</option>
+                                <option value="معاطف وجاكيتات">معاطف وجاكيتات</option>
+                                <option value="الشنط الفاخرة">الشنط الفاخرة</option>
+                                <option value="ملابس يومية عصرية">ملابس يومية عصرية</option>
+                            </select>
+                        </div>
+                        <div><label class="block text-xs font-semibold mb-1">السعر (ل.ت)</label><input type="number" id="vp-price" required class="w-full border border-beige rounded-lg px-3 py-2 text-xs" placeholder="3100"></div>
+                        <div><label class="block text-xs font-semibold mb-1">صورة المنتج (رابط أو رفع محلي)</label><input type="file" id="vp-image-file" accept="image/*" class="w-full border border-beige rounded-lg px-1 py-1 text-xs"></div>
+                        <div><label class="block text-xs font-semibold mb-1">الألوان (مفصولة بفواصل)</label><input type="text" id="vp-colors" required class="w-full border border-beige rounded-lg px-3 py-2 text-xs" placeholder="أسود, بيج"></div>
+                        <div><label class="block text-xs font-semibold mb-1">وصف المنتج</label><input type="text" id="vp-desc" required class="w-full border border-beige rounded-lg px-3 py-2 text-xs" placeholder="تصميم تركي راقي..."></div>
+                        <div class="sm:col-span-2 lg:col-span-3 flex justify-end">
+                            <button type="submit" class="luxury-gradient text-ivory px-6 py-2.5 rounded-xl text-xs font-bold shadow">نشر المنتج في المنصة العامة</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-sm mb-3 text-charcoal">منتجاتك المعروضة في المنصة</h4>
+                    <div id="vendor-products-list" class="space-y-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LAYER 3: SUPER ADMIN PORTAL MODAL -->
+    <div id="admin-portal-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-ivory w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col border border-gold/40">
+            <div class="bg-charcoal text-ivory p-6 flex justify-between items-center border-b border-gold/20">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-shield-halved text-gold text-2xl"></i>
+                    <div>
+                        <h3 class="font-playfair text-xl font-bold">لوحة الإدارة العليا (Super Admin Portal)</h3>
+                        <p class="text-[11px] text-gray-400">إدارة التجار، الموافقة على البضائع، ومراقبة بريد التفعيل (karla2017company@gmail.com)</p>
+                    </div>
+                </div>
+                <button onclick="closePortalModal('admin')" class="text-ivory hover:text-gold text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div id="admin-login-view" class="p-8 max-w-md mx-auto w-full space-y-4">
+                <div class="text-center mb-4">
+                    <h4 class="font-bold text-base text-charcoal">تسجيل دخول الإدارة العليا</h4>
+                    <p class="text-xs text-gray-500">الافتراضي للتجربة: <code class="bg-cream px-1 py-0.5 rounded font-bold">admin / 2026</code></p>
+                </div>
+                <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                    <div><label class="block text-xs font-semibold mb-1">اسم المسؤول</label><input type="text" id="ad-user" required class="w-full border border-beige rounded-lg px-3 py-2 text-xs" placeholder="admin"></div>
+                    <div><label class="block text-xs font-semibold mb-1">كلمة المرور السرية</label><input type="password" id="ad-pass" required class="w-full border border-beige rounded-lg px-3 py-2 text-xs" placeholder="2026"></div>
+                    <button type="submit" class="w-full bg-gold text-charcoal font-bold py-3 rounded-xl text-xs shadow">دخول للوحة الإدارة العليا</button>
+                </form>
+            </div>
+
+            <!-- SUPER ADMIN DASHBOARD VIEW -->
+            <div id="admin-dashboard-view" class="p-6 overflow-y-auto flex-grow space-y-6 hidden">
+                <div class="bg-amber-50 p-4 rounded-xl border border-amber-200 flex justify-between items-center">
+                    <div>
+                        <p class="text-xs text-amber-800 font-bold"><i class="fa-solid fa-envelope ml-1"></i> إيميل استقبال تسجيلات الزبائن وتفعيل الحسابات:</p>
+                        <p class="text-sm font-mono font-bold text-charcoal">karla2017company@gmail.com</p>
+                    </div>
+                    <button onclick="logoutAdmin()" class="bg-ivory border border-beige px-4 py-2 rounded-lg text-xs font-semibold text-red-600">تسجيل الخروج</button>
+                </div>
+
+                <!-- ADMIN MARKETPLACE API SYNC PANEL -->
+                <div class="bg-ivory p-6 rounded-xl border border-beige shadow-sm space-y-6">
+                    <h4 class="font-bold text-base text-charcoal"><i class="fa-solid fa-sync text-burgundy ml-2"></i> مزامنة وسحب المنتجات من المنصات التركية (API)</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Trendyol -->
+                        <div class="bg-cream/40 p-4 rounded-xl border border-beige space-y-3">
+                            <div class="flex justify-between items-center"><h5 class="font-bold text-xs">Trendyol API</h5><span class="w-2.5 h-2.5 rounded-full bg-amber-400" id="tr-status-dot"></span></div>
+                            <input type="text" id="tr-supplier" placeholder="Satıcı ID / Supplier ID" class="w-full border border-beige rounded p-1.5 text-[11px] bg-white">
+                            <input type="text" id="tr-key" placeholder="API Key" class="w-full border border-beige rounded p-1.5 text-[11px] bg-white">
+                            <input type="password" id="tr-secret" placeholder="API Secret" class="w-full border border-beige rounded p-1.5 text-[11px] bg-white">
+                            <input type="text" id="tr-token" placeholder="Access Token" class="w-full border border-beige rounded p-1.5 text-[11px] bg-white">
+                            <button onclick="syncMarketplace('trendyol')" class="w-full luxury-gradient text-ivory py-2 rounded text-xs font-bold">ربط وسحب منتجات ترينديول</button>
+                        </div>
+                        <!-- Hepsiburada -->
+                        <div class="bg-cream/40 p-4 rounded-xl border border-beige space-y-3">
+                            <div class="flex justify-between items-center"><h5 class="font-bold text-xs">Hepsiburada API</h5><span class="w-2.5 h-2.5 rounded-full bg-amber-400" id="hb-status-dot"></span></div>
+                            <input type="text" id="hb-supplier" placeholder="Merchant ID (Cari ID)" class="w-full border border-beige rounded p-1.5 text-[11px] bg-white">
+                            <input type="text" id="hb-key" placeholder="API Key" class="w-full border border-beige rounded p-1.5 text-[11px] bg-white">
+                            <input type="password" id="hb-secret" placeholder="API Secret" class="w-full border border-beige rounded p-1.5 text-[11px] bg-white">
+                            <input type="text" id="hb-token" placeholder="Token" class="w-full border border-beige rounded p-1.5 text-[11px] bg-white">
+                            <button onclick="syncMarketplace('hepsiburada')" class="w-full bg-charcoal text-ivory py-2 rounded text-xs font-bold">ربط وسحب هبسي بوردا</button>
+                        </div>
+                        <!-- N11 -->
+                        <div class="bg-cream/40 p-4 rounded-xl border border-beige space-y-3">
+                            <div class="flex justify-between items-center"><h5 class="font-bold text-xs">N11 API</h5><span class="w-2.5 h-2.5 rounded-full bg-amber-400" id="n11-status-dot"></span></div>
+                            <input type="text" id="n11-supplier" placeholder="Mağaza ID / Satıcı ID" class="w-full border border-beige rounded p-1.5 text-[11px] bg-white">
+                            <input type="text" id="n11-key" placeholder="App Key" class="w-full border border-beige rounded p-1.5 text-[11px] bg-white">
+                            <input type="password" id="n11-secret" placeholder="App Secret" class="w-full border border-beige rounded p-1.5 text-[11px] bg-white">
+                            <input type="text" id="n11-token" placeholder="Token" class="w-full border border-beige rounded p-1.5 text-[11px] bg-white">
+                            <button onclick="syncMarketplace('n11')" class="w-full bg-gold text-charcoal py-2 rounded text-xs font-bold">ربط وسحب منتجات N11</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ADMIN SHIPPING & WAYBILLS MANAGEMENT -->
+                <div class="bg-ivory p-6 rounded-xl border border-beige shadow-sm space-y-4">
+                    <h4 class="font-bold text-sm text-charcoal"><i class="fa-solid fa-truck text-burgundy ml-1"></i> إدارة بوليصات الشحن وتحديث حالة التوصيل</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                        <input type="text" id="adm-ship-order" placeholder="رقم الطلب (مثال: #TEKS-99)" class="border border-beige rounded-lg p-2 text-xs bg-white">
+                        <input type="text" id="adm-ship-waybill" placeholder="رقم البوليصة (TR-XXXX)" class="border border-beige rounded-lg p-2 text-xs bg-white">
+                        <select id="adm-ship-status" class="border border-beige rounded-lg p-2 text-xs bg-white">
+                            <option value="تم الشحن">تم الشحن</option>
+                            <option value="في الطريق">في الطريق</option>
+                            <option value="في التوزيع، سيصل خلال اليوم">في التوزيع، سيصل خلال اليوم</option>
+                            <option value="تم التسليم بنجاح">تم التسليم بنجاح</option>
+                        </select>
+                        <button onclick="adminAddShipmentWaybill()" class="luxury-gradient text-ivory py-2 rounded-lg text-xs font-bold">إضافة وحفظ بوليصة الشحن</button>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-sm mb-3 text-charcoal">إدارة التجار والبائعين في المنصة</h4>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs text-right border-collapse border border-beige">
+                            <thead><tr class="bg-cream text-charcoal"><th class="border border-beige p-2">اسم المتجر</th><th class="border border-beige p-2">الإيميل</th><th class="border border-beige p-2">الحالة</th><th class="border border-beige p-2 text-center">إجراء (توقيف مؤقت / حذف)</th></tr></thead>
+                            <tbody id="admin-vendors-table"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-sm mb-3 text-charcoal">إدارة كافة منتجات التجار في المنصة</h4>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs text-right border-collapse border border-beige">
+                            <thead><tr class="bg-cream text-charcoal"><th class="border border-beige p-2">صورة</th><th class="border border-beige p-2">المنتج</th><th class="border border-beige p-2">التاجر البائع</th><th class="border border-beige p-2">السعر</th><th class="border border-beige p-2 text-center">إجراء</th></tr></thead>
+                            <tbody id="admin-all-products"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-6 left-6 z-50 bg-charcoal text-ivory px-6 py-3 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-32 opacity-0 transition-all duration-300">
+        <i class="fa-solid fa-circle-check text-gold text-lg"></i>
+        <span id="toast-msg" class="text-xs font-medium">تمت الإجراءات بنجاح</span>
+    </div>
+
+    <!-- JAVASCRIPT APP LOGIC -->
+    <script>
+        let products = [
+            { id: 1, title: "فستان سهرة ملكي مطرز باليد", category: "فساتين سهرة", price: 4200, image: "https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&q=80&w=800", colors: ["أسود", "عنابي", "بيج"], desc: "فستان سهرة راقي مصمم بأيدي أمهر المصممين في إسطنبول.", vendor: "تكستيلا الأساسي" },
+            { id: 2, title: "حقيبة جلد طبيعي فاخرة", category: "الشنط الفاخرة", price: 2450, image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&q=80&w=800", colors: ["جملي", "أسود"], desc: "حقيبة يد نسائية من الجلد الطبيعي الفاخر.", vendor: "متجر حقائب البوسفور" },
+            { id: 3, title: "معطف صوفي كشمير فاخر", category: "معاطف وجاكيتات", price: 3450, image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=800", colors: ["بيج", "أسود"], desc: "معطف شتوي مصنوع من أجود أنواع الكشمير.", vendor: "أزياء إسطنبول الراقية" },
+            { id: 4, title: "حقيبة كتف جلدية عصرية", category: "الشنط الفاخرة", price: 1890, image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&q=80&w=800", colors: ["أبيض", "أسود"], desc: "حقيبة كتف بتصميم مبطن وعصري.", vendor: "متجر حقائب البوسفور" }
+        ];
+
+        let adminVendorsList = [
+            { id: 1, name: "متجر حقائب البوسفور", email: "bosphorus@bags.com", status: "active" },
+            { id: 2, name: "أزياء إسطنبول الراقية", email: "istanbul@fashion.tr", status: "active" }
+        ];
+
+        let activeShipments = [
+            { orderId: "#TEKS-2026-89", waybill: "TR-5541298", carrier: "Aras Kargo", shipDate: "12 تشرين الثاني", estDelivery: "اليوم قبل 18:00", status: "في التوزيع، سيصل خلال اليوم" }
+        ];
+
+        let cart = [];
+        let wishlist = [];
+        let currentFilter = 'الكل';
+        let currentPdpProduct = null;
+        let selectedColor = '';
+        let currentCustomer = null;
+        let currentVendor = null;
+        let isAdminLoggedIn = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts(products);
+            updateCartBadge();
+            updateWishlistBadge();
+        });
+
+        function renderProducts(list) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+            if(list.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-500">لا توجد منتجات في هذا التصنيف حالياً.</div>`;
+                return;
+            }
+            list.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'group bg-ivory border border-beige/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition flex flex-col justify-between';
+                card.innerHTML = `
+                    <div class="relative overflow-hidden bg-cream h-80 cursor-pointer" onclick="openPdpModal(${p.id})">
+                        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x800/F4ECE1/2C2A29?text=TEKSTİLLA'">
+                        <div class="absolute bottom-3 left-3 bg-ivory/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-semibold text-charcoal">${p.category}</div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <span class="text-[10px] text-gold font-bold"><i class="fa-solid fa-store ml-1"></i> ${p.vendor || 'تكستيلا'}</span>
+                            <h3 onclick="openPdpModal(${p.id})" class="font-playfair font-bold text-base text-charcoal cursor-pointer hover:text-burgundy line-clamp-1 mt-1">${p.title}</h3>
+                            <p class="text-xs text-gray-500 line-clamp-2 mt-1 font-light">${p.desc}</p>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-beige/60 flex items-center justify-between">
+                            <span class="font-playfair font-bold text-burgundy text-lg">${p.price} ل.ت</span>
+                            <button onclick="quickAddToCart(${p.id})" class="bg-charcoal text-ivory text-xs px-4 py-2.5 rounded-xl font-medium hover:bg-burgundy transition shadow flex items-center gap-2">
+                                <i class="fa-solid fa-bag-shopping"></i><span>شراء</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterByCategory(cat) {
+            currentFilter = cat;
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                if(btn.textContent.trim() === cat || (cat === 'الكل' && btn.textContent.trim() === 'الكل')) {
+                    btn.className = 'category-btn px-4 py-2 rounded-full text-xs font-medium bg-burgundy text-ivory shadow';
+                } else {
+                    btn.className = 'category-btn px-4 py-2 rounded-full text-xs font-medium bg-cream text-charcoal hover:bg-beige';
+                }
+            });
+            if(cat === 'الكل') renderProducts(products);
+            else renderProducts(products.filter(p => p.category === cat));
+            document.getElementById('shop-catalog').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openPdpModal(id) {
+            const p = products.find(x => x.id === id);
+            if(!p) return;
+            currentPdpProduct = p;
+            selectedColor = p.colors ? p.colors[0] : 'افتراضي';
+            document.getElementById('pdp-title').textContent = p.title;
+            document.getElementById('pdp-category').textContent = p.category;
+            document.getElementById('pdp-price').textContent = p.price + ' ليرة تركية';
+            document.getElementById('pdp-desc').textContent = p.desc;
+            document.getElementById('pdp-vendor').innerHTML = `<i class="fa-solid fa-store ml-1"></i> التاجر البائع: ${p.vendor || 'تكستيلا الأساسي'}`;
+            document.getElementById('pdp-main-img').src = p.image;
+            
+            const colContainer = document.getElementById('pdp-colors');
+            colContainer.innerHTML = '';
+            if(p.colors) {
+                p.colors.forEach(c => {
+                    const btn = document.createElement('button');
+                    btn.className = `px-3 py-1.5 rounded-lg text-xs font-medium border ${c === selectedColor ? 'border-burgundy bg-burgundy text-ivory' : 'border-beige bg-ivory text-charcoal'}`;
+                    btn.textContent = c;
+                    btn.onclick = () => { selectedColor = c; openPdpModal(p.id); };
+                    colContainer.appendChild(btn);
+                });
+            }
+            document.getElementById('pdp-modal').classList.remove('hidden');
+        }
+        function closePdpModal() { document.getElementById('pdp-modal').classList.add('hidden'); }
+
+        function addPdpToCart() {
+            if(!currentPdpProduct) return;
+            cart.push({ ...currentPdpProduct, color: selectedColor, qty: 1 });
+            updateCartBadge();
+            closePdpModal();
+            toggleCartDrawer();
+        }
+
+        function quickAddToCart(id) {
+            const p = products.find(x => x.id === id);
+            if(!p) return;
+            cart.push({ ...p, color: p.colors ? p.colors[0] : 'افتراضي', qty: 1 });
+            updateCartBadge();
+            toggleCartDrawer();
+        }
+
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('hidden');
+            const container = document.getElementById('cart-items-container');
+            container.innerHTML = '';
+            if(cart.length === 0) {
+                container.innerHTML = `<p class="text-center text-gray-500 py-12 text-xs">سلة المشتريات فارغة</p>`;
+                document.getElementById('cart-subtotal').textContent = '0 ل.ت';
+                return;
+            }
+            let sub = 0;
+            cart.forEach((item, idx) => {
+                sub += item.price * item.qty;
+                const div = document.createElement('div');
+                div.className = 'flex items-center gap-3 bg-cream/40 p-3 rounded-xl border border-beige';
+                div.innerHTML = `
+                    <img src="${item.image}" class="w-14 h-16 object-cover rounded-lg">
+                    <div class="flex-grow">
+                        <h4 class="font-bold text-xs">${item.title}</h4>
+                        <p class="text-[10px] text-gray-500">اللون: ${item.color} | التاجر: ${item.vendor || 'تكستيلا'}</p>
+                        <p class="font-playfair font-bold text-burgundy text-xs mt-1">${item.price} ل.ت</p>
+                    </div>
+                    <button onclick="cart.splice(${idx},1); toggleCartDrawer(); updateCartBadge();" class="text-red-500 text-xs"><i class="fa-solid fa-trash"></i></button>
+                `;
+                container.appendChild(div);
+            });
+            document.getElementById('cart-subtotal').textContent = sub + ' ل.ت';
+        }
+
+        function updateCartBadge() {
+            const b = document.getElementById('cart-badge');
+            b.textContent = cart.length;
+            if(cart.length > 0) b.classList.remove('hidden'); else b.classList.add('hidden');
+        }
+
+        function checkout() {
+            if(cart.length === 0) { showToast('السلة فارغة'); return; }
+            showToast('جاري إرسال الطلب للبائعين وإتمام الدفع...');
+            setTimeout(() => { cart = []; updateCartBadge(); toggleCartDrawer(); showToast('تم إتمام الطلب بنجاح وتم توليد بوليصة الشحن!'); }, 1500);
+        }
+
+        function updateWishlistBadge() {}
+        function openSizeGuideModal(e) { e.preventDefault(); document.getElementById('size-guide-modal').classList.remove('hidden'); }
+        function closeSizeGuideModal() { document.getElementById('size-guide-modal').classList.add('hidden'); }
+        function openWishlistModal() { document.getElementById('wishlist-modal').classList.remove('hidden'); }
+        function closeWishlistModal() { document.getElementById('wishlist-modal').classList.add('hidden'); }
+
+        // SHIPPING TRACKER MODAL
+        function openShippingTrackerModal(e) {
+            if(e) e.preventDefault();
+            document.getElementById('shipping-tracker-modal').classList.remove('hidden');
+            renderActiveShipments();
+        }
+        function closeShippingTrackerModal() { document.getElementById('shipping-tracker-modal').classList.add('hidden'); }
+
+        function renderActiveShipments() {
+            const listContainer = document.getElementById('active-shipments-list');
+            if(!listContainer) return;
+            listContainer.innerHTML = '';
+            if(activeShipments.length === 0) {
+                listContainer.innerHTML = `<p class="text-xs text-gray-500 text-center py-4">لا توجد شحنات نشطة حالياً.</p>`;
+                return;
+            }
+            activeShipments.forEach(s => {
+                const div = document.createElement('div');
+                div.className = 'bg-white p-4 rounded-xl border border-beige shadow-sm space-y-3';
+                div.innerHTML = `
+                    <div class="flex justify-between items-center text-xs border-b border-cream pb-2">
+                        <span class="font-bold text-burgundy">رقم الطلب: ${s.orderId}</span>
+                        <span class="bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full font-bold text-[10px]">${s.status}</span>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] text-gray-600">
+                        <div><span class="block text-gray-400">شركة الشحن:</span> <b>${s.carrier}</b></div>
+                        <div><span class="block text-gray-400">رقم البوليصة:</span> <b class="font-mono text-charcoal">${s.waybill}</b></div>
+                        <div><span class="block text-gray-400">تاريخ الشحن:</span> ${s.shipDate}</div>
+                        <div><span class="block text-gray-400">التسليم المتوقع:</span> <b class="text-burgundy">${s.estDelivery}</b></div>
+                    </div>
+                `;
+                listContainer.appendChild(div);
+            });
+        }
+
+        function searchShipmentCode() {
+            const code = document.getElementById('track-input-code').value.trim();
+            if(!code) { showToast('يرجى إدخال رقم البوليصة أو الطلب'); return; }
+            const found = activeShipments.find(s => s.waybill.includes(code) || s.orderId.includes(code));
+            if(found) {
+                showToast(`تم العثور على الشحنة: ${found.status}`);
+            } else {
+                showToast('لم يتم العثور على شحنة بهذا الرقم');
+            }
+        }
+
+        function adminAddShipmentWaybill() {
+            const orderId = document.getElementById('adm-ship-order').value.trim() || '#TEKS-NEW';
+            const waybill = document.getElementById('adm-ship-waybill').value.trim() || 'TR-' + Math.floor(Math.random()*900000);
+            const status = document.getElementById('adm-ship-status').value;
+
+            activeShipments.unshift({
+                orderId,
+                waybill,
+                carrier: 'MNG Kargo / Aras',
+                shipDate: 'اليوم',
+                estDelivery: 'خلال 24 ساعة',
+                status
+            });
+            showToast('تم إضافة وتحديث بوليصة الشحن بنجاح للزبون');
+            document.getElementById('adm-ship-order').value = '';
+            document.getElementById('adm-ship-waybill').value = '';
+        }
+
+        // MARKETPLACE SYNC SIMULATION
+        function syncMarketplace(market) {
+            let dotId = market === 'trendyol' ? 'tr-status-dot' : market === 'hepsiburada' ? 'hb-status-dot' : 'n11-status-dot';
+            document.getElementById(dotId).className = 'w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse';
+            showToast(`جاري الاتصال بـ API منصة ${market.toUpperCase()} وسحب البضائع...`);
+            
+            setTimeout(() => {
+                document.getElementById(dotId).className = 'w-2.5 h-2.5 rounded-full bg-green-500';
+                const imported = {
+                    id: Date.now(),
+                    title: `منتج مسحوب آلياً من ${market.toUpperCase()}`,
+                    category: market === 'trendyol' ? 'فساتين سهرة' : 'الشنط الفاخرة',
+                    price: Math.floor(Math.random() * 2500) + 1200,
+                    image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=800",
+                    colors: ["أسود", "رمادي"],
+                    desc: `تم استيراد هذا المنتج مباشرة عبر تكامل ${market.toUpperCase()} API.`,
+                    vendor: `${market.toUpperCase()} Official Store`
+                };
+                products.unshift(imported);
+                renderProducts(currentFilter === 'الكل' ? products : products.filter(p => p.category === currentFilter));
+                renderAdminAllProducts();
+                showToast(`تم سحب المنتجات من ${market.toUpperCase()} بنجاح وإضافتها للمتجر!`);
+            }, 1500);
+        }
+
+        // PORTALS SWITCHING
+        function openPortalModal(type) {
+            closePortalModal('customer'); closePortalModal('vendor'); closePortalModal('admin');
+            if(type === 'customer') {
+                document.getElementById('customer-portal-modal').classList.remove('hidden');
+                if(currentCustomer) {
+                    document.getElementById('form-cust-login').classList.add('hidden');
+                    document.getElementById('form-cust-reg').classList.add('hidden');
+                    document.getElementById('cust-profile-box').classList.remove('hidden');
+                    document.getElementById('cp-name').textContent = currentCustomer.name;
+                    document.getElementById('cp-email').textContent = currentCustomer.email;
+                    document.getElementById('cp-phone').textContent = 'الهاتف: ' + currentCustomer.phone;
+                    document.getElementById('cp-address').textContent = 'العنوان: ' + currentCustomer.address;
+                }
+            } else if(type === 'vendor') {
+                document.getElementById('vendor-portal-modal').classList.remove('hidden');
+                if(currentVendor) {
+                    document.getElementById('vendor-login-view').classList.add('hidden');
+                    document.getElementById('vendor-dashboard-view').classList.remove('hidden');
+                    renderVendorProducts();
+                }
+            } else if(type === 'admin') {
+                document.getElementById('admin-portal-modal').classList.remove('hidden');
+                if(isAdminLoggedIn) {
+                    document.getElementById('admin-login-view').classList.add('hidden');
+                    document.getElementById('admin-dashboard-view').classList.remove('hidden');
+                    renderAdminAllProducts();
+                    renderAdminVendorsManagement();
+                }
+            }
+        }
+
+        function closePortalModal(type) {
+            if(type === 'customer') document.getElementById('customer-portal-modal').classList.add('hidden');
+            if(type === 'vendor') document.getElementById('vendor-portal-modal').classList.add('hidden');
+            if(type === 'admin') document.getElementById('admin-portal-modal').classList.add('hidden');
+        }
+
+        function switchCustMode(m) {
+            if(m === 'login') {
+                document.getElementById('form-cust-login').classList.remove('hidden');
+                document.getElementById('form-cust-reg').classList.add('hidden');
+                document.getElementById('c-tab-l').className = 'text-burgundy border-b-2 border-burgundy pb-1 font-bold';
+                document.getElementById('c-tab-r').className = 'text-gray-500 pb-1';
+            } else {
+                document.getElementById('form-cust-login').classList.add('hidden');
+                document.getElementById('form-cust-reg').classList.remove('hidden');
+                document.getElementById('c-tab-r').className = 'text-burgundy border-b-2 border-burgundy pb-1 font-bold';
+                document.getElementById('c-tab-l').className = 'text-gray-500 pb-1';
+            }
+        }
+
+        function handleCustomerLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('cl-user').value;
+            currentCustomer = { name: u.split('@')[0], email: u, phone: '+90 530 000 1122', address: 'إسطنبول، تركيا' };
+            document.getElementById('nav-customer-name').textContent = currentCustomer.name;
+            closePortalModal('customer');
+            showToast(`أهلاً بك يا ${currentCustomer.name}! تم تسجيل الدخول.`);
+        }
+
+        function handleCustomerRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('cr-name').value;
+            const email = document.getElementById('cr-email').value;
+            const phone = document.getElementById('cr-phone').value;
+            const address = document.getElementById('cr-address').value;
+
+            currentCustomer = { name, email, phone, address };
+            console.log(`[Email Dispatched to karla2017company@gmail.com] New Customer: ${name} | Email: ${email}`);
+            showToast('تم إرسال إشعار التسجيل وتفاصيلك إلى إيميل المتجر (karla2017company@gmail.com)');
+            
+            setTimeout(() => {
+                closePortalModal('customer');
+                document.getElementById('nav-customer-name').textContent = name;
+                showToast(`مبارك ${name}! تم تفعيل حسابك ونالك كوبون خصم 15% (TEKST15).`);
+            }, 1200);
+        }
+
+        function logoutCustomer() {
+            currentCustomer = null;
+            document.getElementById('nav-customer-name').textContent = 'حسابي';
+            closePortalModal('customer');
+            showToast('تم تسجيل الخروج');
+        }
+
+        function handleVendorLogin(e) {
+            e.preventDefault();
+            const vname = document.getElementById('v-name').value;
+            const vObj = adminVendorsList.find(x => x.name === vname);
+            if(vObj && vObj.status === 'suspended') {
+                showToast('عذراً، تم توقيف صفحة هذا المتجر مؤقتاً من قبل الإدارة.');
+                return;
+            }
+            currentVendor = { name: vname };
+            document.getElementById('lbl-vendor-store').textContent = vname;
+            document.getElementById('vendor-login-view').classList.add('hidden');
+            document.getElementById('vendor-dashboard-view').classList.remove('hidden');
+            renderVendorProducts();
+            showToast(`أهلاً بك في بوابة التجار يا ${vname}`);
+        }
+
+        function logoutVendor() {
+            currentVendor = null;
+            document.getElementById('vendor-dashboard-view').classList.add('hidden');
+            document.getElementById('vendor-login-view').classList.remove('hidden');
+        }
+
+        function handleVendorAddProduct(e) {
+            e.preventDefault();
+            const title = document.getElementById('vp-title').value;
+            const category = document.getElementById('vp-category').value;
+            const price = parseFloat(document.getElementById('vp-price').value);
+            const colorsStr = document.getElementById('vp-colors').value;
+            const desc = document.getElementById('vp-desc').value;
+            const fileInput = document.getElementById('vp-image-file').files[0];
+            const colors = colorsStr.split(',').map(c => c.trim());
+
+            if(fileInput) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    saveVendorProd(title, category, price, evt.target.result, colors, desc);
+                };
+                reader.readAsDataURL(fileInput);
+            } else {
+                saveVendorProd(title, category, price, "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=800", colors, desc);
+            }
+        }
+
+        function saveVendorProd(title, category, price, image, colors, desc) {
+            const newP = {
+                id: Date.now(),
+                title, category, price, image, colors, desc,
+                vendor: currentVendor ? currentVendor.name : 'تاجر معتمد'
+            };
+            products.unshift(newP);
+            renderProducts(currentFilter === 'الكل' ? products : products.filter(p => p.category === currentFilter));
+            renderVendorProducts();
+            showToast('تم نشر منتجك بنجاح في المنصة العامة');
+        }
+
+        function renderVendorProducts() {
+            const list = document.getElementById('vendor-products-list');
+            list.innerHTML = '';
+            const myProds = products.filter(p => p.vendor === (currentVendor ? currentVendor.name : ''));
+            if(myProds.length === 0) {
+                list.innerHTML = `<p class="text-xs text-gray-500">لم تقم بإضافة أي منتجات بعد.</p>`;
+                return;
+            }
+            myProds.forEach(p => {
+                const div = document.createElement('div');
+                div.className = 'flex items-center justify-between bg-cream/40 p-3 rounded-xl border border-beige text-xs';
+                div.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <img src="${p.image}" class="w-10 h-12 object-cover rounded">
+                        <div><b>${p.title}</b><p class="text-burgundy font-bold">${p.price} ل.ت</p></div>
+                    </div>
+                    <button onclick="deleteProduct(${p.id}); renderVendorProducts();" class="text-red-500"><i class="fa-solid fa-trash"></i></button>
+                `;
+                list.appendChild(div);
+            });
+        }
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('ad-user').value;
+            const p = document.getElementById('ad-pass').value;
+            if(u === 'admin' && p === '2026') {
+                isAdminLoggedIn = true;
+                document.getElementById('admin-login-view').classList.add('hidden');
+                document.getElementById('admin-dashboard-view').classList.remove('hidden');
+                renderAdminAllProducts();
+                renderAdminVendorsManagement();
+                showToast('تم تسجيل دخول الإدارة العليا بنجاح');
+            } else {
+                showToast('بيانات الإدارة غير صحيحة (admin / 2026)');
+            }
+        }
+
+        function logoutAdmin() {
+            isAdminLoggedIn = false;
+            document.getElementById('admin-dashboard-view').classList.add('hidden');
+            document.getElementById('admin-login-view').classList.remove('hidden');
+        }
+
+        function renderAdminAllProducts() {
+            const tbody = document.getElementById('admin-all-products');
+            if(!tbody) return;
+            tbody.innerHTML = '';
+            products.forEach(p => {
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-beige';
+                tr.innerHTML = `
+                    <td class="p-2"><img src="${p.image}" class="w-8 h-10 object-cover rounded"></td>
+                    <td class="p-2 font-bold">${p.title}</td>
+                    <td class="p-2 text-gold font-bold">${p.vendor || 'تكستيلا'}</td>
+                    <td class="p-2 font-playfair font-bold text-burgundy">${p.price} ل.ت</td>
+                    <td class="p-2 text-center"><button onclick="deleteProduct(${p.id}); renderAdminAllProducts();" class="bg-red-500 text-ivory px-2 py-1 rounded"><i class="fa-solid fa-trash"></i></button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderAdminVendorsManagement() {
+            const tbody = document.getElementById('admin-vendors-table');
+            if(!tbody) return;
+            tbody.innerHTML = '';
+            adminVendorsList.forEach((v, index) => {
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-beige';
+                tr.innerHTML = `
+                    <td class="p-2 font-bold">${v.name}</td>
+                    <td class="p-2 text-gray-600">${v.email}</td>
+                    <td class="p-2">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${v.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                            ${v.status === 'active' ? 'نشط' : 'متوقف مؤقتاً'}
+                        </span>
+                    </td>
+                    <td class="p-2 text-center flex justify-center gap-2">
+                        <button onclick="toggleVendorStatus(${index})" class="bg-amber-500 text-ivory px-2.5 py-1 rounded text-xs font-semibold">
+                            ${v.status === 'active' ? 'توقيف مؤقت' : 'تفعيل'}
+                        </button>
+                        <button onclick="deleteVendorRecord(${index})" class="bg-red-500 text-ivory px-2 py-1 rounded text-xs"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function toggleVendorStatus(index) {
+            adminVendorsList[index].status = adminVendorsList[index].status === 'active' ? 'suspended' : 'active';
+            renderAdminVendorsManagement();
+            showToast(`تم تغيير حالة المتجر إلى: ${adminVendorsList[index].status === 'active' ? 'نشط' : 'متوقف مؤقتاً'}`);
+        }
+
+        function deleteVendorRecord(index) {
+            adminVendorsList.splice(index, 1);
+            renderAdminVendorsManagement();
+            showToast('تم حذف التاجر نهائياً');
+        }
+
+        function deleteProduct(id) {
+            products = products.filter(p => p.id !== id);
+            renderProducts(currentFilter === 'الكل' ? products : products.filter(p => p.category === currentFilter));
+            showToast('تم حذف المنتج');
+        }
+
+        let toastTimeout = null;
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = msg;
+            t.classList.remove('translate-y-32', 'opacity-0');
+            t.classList.add('translate-y-0', 'opacity-100');
+            if(toastTimeout) clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                t.classList.remove('translate-y-0', 'opacity-100');
+                t.classList.add('translate-y-32', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
